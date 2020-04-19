@@ -1,0 +1,88 @@
+version: '3'
+
+services:
+  edge-router:
+    image: weaveworksdemos/edge-router
+    ports:
+      - '8080:80'
+    hostname: edge-router
+    environment:
+      - reschedule:on-node-failure
+    depends_on:
+      - front-end
+  front-end:
+    build:
+      context: ./helpers/front-end
+    hostname: front-end
+    environment:
+      - reschedule:on-node-failure
+  catalogue:
+    image: weaveworksdemos/catalogue
+    hostname: catalogue
+    environment:
+      - reschedule:on-node-failure
+  catalogue-db:
+    image: weaveworksdemos/catalogue-db
+    hostname: catalogue-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=""
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=socksdb
+  carts:
+    image: weaveworksdemos/carts
+    hostname: carts
+    environment:
+      - reschedule:on-node-failure
+  carts-db:
+    image: mongo
+    hostname: carts-db
+    environment:
+      - reschedule:on-node-failure
+#  orders:
+#    image: weaveworksdemos/orders
+#    hostname: orders
+#    environment:
+#      - reschedule:on-node-failure
+#  orders-db:
+#    image: mongo
+#    hostname: orders-db
+#    environment:
+#      - reschedule:on-node-failure
+#  shipping:
+#    image: weaveworksdemos/shipping
+#    hostname: shipping
+#    environment:
+#      - reschedule:on-node-failure
+#  queue-master:
+#    image: weaveworksdemos/queue-master
+#    hostname: queue-master
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    environment:
+#      - reschedule:on-node-failure
+#  rabbitmq:
+#    image: rabbitmq:3
+#    hostname: rabbitmq
+#    environment:
+#      - reschedule:on-node-failure
+#  payment:
+#    image: weaveworksdemos/payment
+#    hostname: payment
+#    environment:
+#      - reschedule:on-node-failure
+#    entrypoint:
+#      - /app
+#    command:
+#      - -port=80
+#      - -decline=999
+  user:
+    image: weaveworksdemos/user
+    hostname: user
+    environment:
+      - MONGO_HOST=user-db:27017
+      - reschedule=on-node-failure
+  user-db:
+    image: weaveworksdemos/user-db
+    hostname: user-db
+    environment:
+      - reschedule=on-node-failure
