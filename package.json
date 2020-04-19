@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start-dev": "DEBUG=express:*,microfrontend-patterns:* node ./bin/www"
+    "start-dev": "DEBUG=express:*,microfrontend-patterns:* node ./bin/www",
+    "formatter-check": "./node_modules/.bin/prettier --check '*.js' 'bin/www' 'routes/**/*.js'",
+    "formatter-fix": "./node_modules/.bin/prettier --write '*.js' 'bin/www' 'routes/**/*.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,5 +14,8 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "prettier": "2.0.4"
   }
 }
