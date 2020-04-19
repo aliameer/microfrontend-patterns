@@ -10,4 +10,10 @@ module.exports = {
   bracketSpacing: true,
   jsxBracketSameLine: false,
   arrowParens: 'always',
+  overrides: [
+    {
+      files: '*.twig',
+      options: { parser: 'html' },
+    },
+  ],
 };
