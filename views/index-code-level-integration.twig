@@ -1,26 +1,26 @@
 {% extends 'layout.twig' %} {% block body %}
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Socks Shop</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Socks Shop</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown" id="user"></li>
-          <li class="nav-item dropdown" id="carts"></li>
-        </ul>
-      </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown" id="user"></li>
+        <li class="nav-item dropdown" id="carts"></li>
+      </ul>
+    </div>
+  </nav>
 
-    <div class="container pt-2" id="catalogue"></div>
-  </div>
+  <div class="container pt-2" id="catalogue"></div>
+</div>
 {% endblock %} {% block scripts %}
-  <script src="http://localhost:3000/javascripts/code-level-integration.js"></script>
+<script src="http://localhost:3000/javascripts/code-level-integration.js"></script>
 {% endblock %}

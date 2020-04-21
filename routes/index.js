@@ -1,8 +1,13 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 
 router.get(['/', '/monolith'], (req, res, next) => {
   res.render('index.twig', { title: 'Pattern - Monolith' });
+});
+
+router.get('/monolith-spa-reactjs', function (req, res) {
+  res.sendFile(path.resolve(`${__dirname}/../public/build`, 'index.html'));
 });
 
 router.get('/ssi', (req, res, next) => {
