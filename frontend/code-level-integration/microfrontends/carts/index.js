@@ -1,0 +1,91 @@
+$('#carts').append(`
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+    <svg id="user-i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+      <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+      <circle cx="25" cy="27" r="2" />
+      <circle cx="12" cy="27" r="2" />
+    </svg>
+  
+    <span class="badge badge-light" id="carts-items-count">0</span>
+  </a>
+  <div class="dropdown-menu dropdown-menu-right" style="width: 400px">
+    <ul class="list-group" id="carts-items">
+      <li class="list-group-item" id="carts-empty-cart">Empty cart...</li>
+    </ul>
+  </div>
+`);
+
+$.ajaxSetup({
+  contentType: 'application/json; charset=utf-8',
+  xhrFields: {
+    withCredentials: true,
+  },
+});
+
+$(document).ready(() => {
+  $('#carts').on('carts:initialize-cart', () => {
+    carts_initializeCart();
+  });
+
+  $('#carts').on('carts:add-product-to-cart', (event, product) => {
+    carts_addToCart(product.id);
+  });
+
+  $('#carts').on('carts:reset-cart', () => {
+    carts_resetCart();
+  });
+});
+
+function carts_initializeCart() {
+  $.getJSON('http://localhost:8080/cart', {}, (items) => {
+    if (items != null) {
+      let numItemsInCart = 0;
+      $.each(items, (index, itm) => {
+        if (itm != null && itm.itemId != null) {
+          $.getJSON(
+            `http://localhost:8080/catalogue/${itm.itemId}`,
+            (product) => {
+              numItemsInCart = numItemsInCart + itm.quantity;
+
+              $('#carts-items').append(`
+                <li class="list-group-item c-item">
+                  <div class="media">
+                    <img class="mr-3" src=http://localhost:8080${product.imageUrl[0]}" width="60" />
+                    <div class="media-body">
+                      <h5 class="mt-0">${product.name} - ${product.price}</h5>
+                    </div>
+                  </div>
+                </li>
+              `);
+            }
+          ).always(() => {
+            $('#carts-items-count').text(numItemsInCart);
+
+            if (numItemsInCart > 0) {
+              $('#carts-empty-cart').hide();
+            }
+          });
+        }
+      });
+    }
+  });
+}
+
+function carts_addToCart(id) {
+  $.ajax({
+    url: 'http://localhost:8080/cart',
+    type: 'POST',
+    data: JSON.stringify({ id: id }),
+    success: function () {
+      const countElement = $('#carts-items-count');
+      const currentCount = parseInt(countElement.text().trim()) || 0;
+      countElement.text(currentCount + 1);
+    },
+  });
+}
+
+function carts_resetCart() {
+  $('#carts-items .c-item').hide();
+  $('#carts-items-count').text('0');
+  $('#carts-empty-cart').show();
+}

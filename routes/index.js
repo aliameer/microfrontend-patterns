@@ -33,4 +33,10 @@ router.get('/esi', (req, res, next) => {
   );
 });
 
+router.get('/code-level-integration', (req, res, next) => {
+  res.render('index-code-level-integration.twig', {
+    title: 'Pattern - Code Level Integration',
+  });
+});
+
 module.exports = router;
