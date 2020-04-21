@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %} {% block body %}
+{#
+  The esi:include tag must be placed on a single line; otherwise, its
+  processing breaks. The formatter (Prettier) will line-break the
+  esi:include tag across multiple lines which will cause the tag to break.
+  Therefore, this file is excluded from being formatted by adding it to .prettierignore
+#}
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Socks Shop</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown" id="user">
+          <esi:include src="{{ microfrontendBaseUrl }}/snippet/user" alt="Failed to load user microfrontend"></esi:include>
+        </li>
+        <li class="nav-item dropdown" id="carts">
+          <esi:include src="{{ microfrontendBaseUrl }}/snippet/carts" alt="Failed to load carts microfrontend"></esi:include>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container pt-2" id="catalogue">
+    <esi:include src="{{ microfrontendBaseUrl }}/snippet/catalogue" alt="Failed to load catalogue microfrontend"></esi:include>
+  </div>
+</div>
+{% endblock %}
