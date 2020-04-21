@@ -44,4 +44,11 @@ router.get('/code-level-integration', (req, res, next) => {
   });
 });
 
+router.get('/csi', (req, res, next) => {
+  res.render('index-csi.twig', {
+    title: 'Pattern - Client-Side-Includes(CSI)',
+    microfrontendBaseUrl: 'http://localhost:3000',
+  });
+});
+
 module.exports = router;
