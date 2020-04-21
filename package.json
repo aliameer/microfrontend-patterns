@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "start-dev": "DEBUG=express:*,microfrontend-patterns:* node ./bin/www",
-    "formatter-check": "./node_modules/.bin/prettier --check '*.js' 'bin/www' 'routes/**/*.js' 'views/**/*.twig'",
-    "formatter-fix": "./node_modules/.bin/prettier --write '*.js' 'bin/www' 'routes/**/*.js' 'views/**/*.twig'"
+    "formatter-check": "./node_modules/.bin/prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig'",
+    "formatter-fix": "./node_modules/.bin/prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
