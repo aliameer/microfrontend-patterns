@@ -51,4 +51,16 @@ router.get('/csi', (req, res, next) => {
   });
 });
 
+router.get('/iframe/:microfrontend(user|carts|catalogue)', (req, res, next) => {
+  const microfrontend = req.params.microfrontend;
+  res.render(`microfrontends/${microfrontend}/${microfrontend}-iframe.twig`);
+});
+
+router.get('/client-side-iframes', (req, res, next) => {
+  res.render('index-iframes.twig', {
+    title: 'Pattern - Client-Side-Iframes',
+    microfrontendBaseUrl: 'http://localhost:3000',
+  });
+});
+
 module.exports = router;
