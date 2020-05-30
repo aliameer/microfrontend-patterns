@@ -31,5 +31,18 @@ and catalogue. Additionally, it also contains an Edge Router as well as a
 [Backend-for-Frontend (BFF)](https://samnewman.io/patterns/architectural/bff/). Finally, the
 services as well as the persistence are polyglot.
 
-For the purpose of this thesis, only the user, carts, and catalog microservices were used.  
+For the purpose of this thesis, only the `user`, `carts`, and `catalogue` microservices were used in
+order to scope down the project to make it more manageable within the timeframe. A typical user
+journey for this scoped-down application requires a user,
+ 
+ 1. To register and/or login (handled by the `user` microservice).
+ 2. To view a list of socks (handled by the `catalogue` microservice).
+ 3. To add an item in the catalogue to the user's cart (handled by the `carts` service).
 
+To achieve this, the frontend of the Sock Shop project was first simplified and refactored to
+generate a monolithic frontend application that uses as few (extra) frontend resources as possible:
+jQuery, js-cookie, and Twitter Bootstrap only. This led to the following implementations,
+
+1. Baseline (simplified) monolithic application.
+2. Single Page Application (SPA) of the monolithic application implemented using ReactJS.
+3. The monolithic application implemented using (7 out of 9) microfrontend patterns.

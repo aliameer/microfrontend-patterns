@@ -12,7 +12,7 @@ router.get('/monolith-spa-reactjs', function (req, res) {
 
 router.get('/ssi', (req, res, next) => {
   res.render('index-ssi.twig', {
-    title: 'Pattern - Server-Side-Includes(SSI)',
+    title: 'Pattern - Server-Side Includes(SSI)',
   });
 });
 
@@ -31,7 +31,7 @@ router.get('/esi', (req, res, next) => {
   res.render(
     'index-esi.twig',
     {
-      title: 'Pattern - Edge-Side-Includes(ESI)',
+      title: 'Pattern - Edge-Side Includes(ESI)',
       microfrontendBaseUrl: 'http://localhost:3000',
     },
     async (err, html) => res.send(await esi.process(html))
@@ -40,13 +40,13 @@ router.get('/esi', (req, res, next) => {
 
 router.get('/code-level-integration', (req, res, next) => {
   res.render('index-code-level-integration.twig', {
-    title: 'Pattern - Code Level Integration',
+    title: 'Pattern - Client-Side Code Level Integration',
   });
 });
 
 router.get('/csi', (req, res, next) => {
   res.render('index-csi.twig', {
-    title: 'Pattern - Client-Side-Includes(CSI)',
+    title: 'Pattern - Client-Side Includes(CSI)',
     microfrontendBaseUrl: 'http://localhost:3000',
   });
 });
@@ -58,8 +58,15 @@ router.get('/iframe/:microfrontend(user|carts|catalogue)', (req, res, next) => {
 
 router.get('/client-side-iframes', (req, res, next) => {
   res.render('index-iframes.twig', {
-    title: 'Pattern - Client-Side-Iframes',
+    title: 'Pattern - Client-Side Iframes',
     microfrontendBaseUrl: 'http://localhost:3000',
+  });
+});
+
+router.get('/hybrid', (req, res, next) => {
+  res.render('index-hybrid.twig', {
+    title: 'Pattern - Hybrid Fragment Composition',
+    componentRegistryBaseUrl: 'http://localhost:3030',
   });
 });
 

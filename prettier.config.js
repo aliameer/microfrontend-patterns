@@ -12,7 +12,7 @@ module.exports = {
   arrowParens: 'always',
   overrides: [
     {
-      files: '*.twig',
+      files: ['*.twig', '*.hbs'],
       options: { parser: 'html' },
     },
   ],
