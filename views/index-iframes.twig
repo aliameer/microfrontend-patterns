@@ -1,54 +1,80 @@
 {% extends 'layout.twig' %} {% block body %}
-  <style>
-    iframe {
-      overflow: visible;
-    }
-  </style>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Socks Shop</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Socks Shop</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown" id="user">
-            <iframe
-              src="{{ microfrontendBaseUrl }}/iframe/user"
-              alt="Failed to load user microfrontend"
-              frameborder="0"
-              scrolling="no"
-              height="32"
-            ></iframe>
-          </li>
-          <li class="nav-item dropdown" id="carts">
-            <iframe
-              src="{{ microfrontendBaseUrl }}/iframe/carts"
-              alt="Failed to load carts microfrontend"
-              frameborder="0"
-              scrolling="no"
-              height="32"
-            ></iframe>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container pt-2" id="catalogue">
-      <iframe
-        src="{{ microfrontendBaseUrl }}/iframe/catalogue"
-        alt="Failed to load catalogue microfrontend"
-        scrolling="no"
-        frameborder="0"
-        width="100%"
-      ></iframe>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown" id="user">
+          <iframe
+            id="user-iframe"
+            src="{{ microfrontendBaseUrl }}/iframe/user"
+            alt="Failed to load user microfrontend"
+            frameborder="0"
+            scrolling="no"
+            height="32"
+          ></iframe>
+        </li>
+        <li class="nav-item dropdown" id="carts">
+          <iframe
+            id="carts-iframe"
+            src="{{ microfrontendBaseUrl }}/iframe/carts"
+            alt="Failed to load carts microfrontend"
+            frameborder="0"
+            scrolling="no"
+            height="32"
+          ></iframe>
+        </li>
+      </ul>
     </div>
+  </nav>
+
+  <div class="container pt-2" id="catalogue">
+    <iframe
+      id="catalogue-iframe"
+      src="{{ microfrontendBaseUrl }}/iframe/catalogue"
+      alt="Failed to load catalogue microfrontend"
+      frameborder="0"
+      scrolling="no"
+      width="100%"
+    ></iframe>
   </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  function handleMessage(message) {
+    const microfrontendId = message.data[0];
+    const messageType = message.data[1];
+    const messageData = message.data[2];
+
+    switch (messageType) {
+      case 'iframe-resize':
+        handleIframeResize(
+          microfrontendId,
+          messageData.width,
+          messageData.height
+        );
+        break;
+      default:
+        console.log('Message did not match');
+    }
+  }
+
+  window.addEventListener('message', (message) => {
+    handleMessage(message);
+  });
+
+  function handleIframeResize(microfrontendId, width, height) {
+    document.getElementById(microfrontendId).style.width = width;
+    document.getElementById(microfrontendId).style.height = height;
+  }
+</script>
 {% endblock %}

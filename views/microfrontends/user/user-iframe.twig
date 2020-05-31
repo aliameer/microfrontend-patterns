@@ -1,6 +1,13 @@
 {% extends 'layout.twig' %} {% block body %}
+<style>
+  body {
+    background-color: #343a40;
+  }
+</style>
+
 <a
   class="nav-link dropdown-toggle"
+  style="padding: 0; color: rgba(255, 255, 255, 0.75);"
   href="#"
   role="button"
   data-toggle="dropdown"
@@ -166,6 +173,9 @@
     },
   });
 
+  // const userMf = window.parent.document.getElementById('user');
+  // userMf.appendChild(window.document.getElementById('user-login-modal'));
+
   function user_getUsername(id, callback) {
     $.ajax({
       url: `http://localhost:8080/customers/${id}`,
@@ -284,5 +294,14 @@
     });
     return false;
   }
+</script>
+
+<script>
+  const iframeDimensions = { width: '49px', height: '32px' };
+
+  window.parent.postMessage(
+    ['user-iframe', 'iframe-resize', iframeDimensions],
+    '*'
+  );
 </script>
 {% endblock %}

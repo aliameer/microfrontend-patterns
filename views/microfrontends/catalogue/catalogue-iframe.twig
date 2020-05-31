@@ -1,19 +1,19 @@
 {% extends 'layout.twig' %} {% block body %}
-  <div class="row" id="catalogue-products"></div>
+<div class="row" id="catalogue-products"></div>
 
-  <script>
-    $.ajaxSetup({
-      contentType: 'application/json; charset=utf-8',
-      xhrFields: {
-        withCredentials: true,
-      },
-    });
+<script>
+  $.ajaxSetup({
+    contentType: 'application/json; charset=utf-8',
+    xhrFields: {
+      withCredentials: true,
+    },
+  });
 
-    $(document).ready(() => {
-      $.getJSON('http://localhost:8080/catalogue', function (data) {
-        if (data != null) {
-          $.each(data, function (index, element) {
-            $('#catalogue-products').append(`
+  $(document).ready(() => {
+    $.getJSON('http://localhost:8080/catalogue', function (data) {
+      if (data != null) {
+        $.each(data, function (index, element) {
+          $('#catalogue-products').append(`
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="#">
@@ -35,19 +35,36 @@
               </div>
             </div>
           `);
-          });
-        }
-      });
-    });
+        });
 
-    function catalogue_addToCart(productId, productName, productPrice) {
-      $('#carts').trigger('carts:add-product-to-cart', [
-        {
-          id: productId,
-          name: productName,
-          price: productPrice,
-        },
-      ]);
-    }
-  </script>
+        const height = window.document.body.scrollHeight;
+        console.log('setting height: ', height);
+
+        const iframeDimensions = {
+          width: '100%',
+          height: `${height}px`,
+        };
+
+        window.parent.postMessage(
+          ['catalogue-iframe', 'iframe-resize', iframeDimensions],
+          '*'
+        );
+      }
+    });
+  });
+
+  function catalogue_addToCart(productId, productName, productPrice) {
+    const product = {
+      id: productId,
+      name: productName,
+      price: productPrice,
+    };
+
+    window.parent.document
+      .getElementById('carts-iframe')
+      .contentWindow.postMessage(
+        `carts:add-product-to-cart--${JSON.stringify(product)}`
+      );
+  }
+</script>
 {% endblock %}
