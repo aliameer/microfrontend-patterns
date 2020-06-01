@@ -20,17 +20,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown" id="user">
-          <esi:include src="{{ microfrontendBaseUrl }}/snippet/user" alt="Failed to load user microfrontend"></esi:include>
+          <esi:include src="{{ microfrontendBaseUrl }}/helpers/snippet/user" alt="Failed to load user microfrontend"></esi:include>
         </li>
         <li class="nav-item dropdown" id="carts">
-          <esi:include src="{{ microfrontendBaseUrl }}/snippet/carts" alt="Failed to load carts microfrontend"></esi:include>
+          <esi:include src="{{ microfrontendBaseUrl }}/helpers/snippet/carts" alt="Failed to load carts microfrontend"></esi:include>
         </li>
       </ul>
     </div>
   </nav>
 
   <div class="container pt-2" id="catalogue">
-    <esi:include src="{{ microfrontendBaseUrl }}/snippet/catalogue" alt="Failed to load catalogue microfrontend"></esi:include>
+    <esi:include src="{{ microfrontendBaseUrl }}/helpers/snippet/catalogue" alt="Failed to load catalogue microfrontend"></esi:include>
   </div>
 </div>
 {% endblock %}

@@ -25,7 +25,7 @@
 <script>
   $(document).ready(function () {
     ['user', 'carts', 'catalogue'].forEach((mf) => {
-      $(`#${mf}`).load(`{{ microfrontendBaseUrl }}/snippet/${mf}`);
+      $(`#${mf}`).load(`{{ microfrontendBaseUrl }}/helpers/snippet/${mf}`);
     });
   });
 </script>

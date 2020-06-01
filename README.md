@@ -35,9 +35,9 @@ For the purpose of this thesis, only the `user`, `carts`, and `catalogue` micros
 order to scope down the project to make it more manageable within the timeframe. A typical user
 journey for this scoped-down application requires a user,
  
- 1. To register and/or login (handled by the `user` microservice).
- 2. To view a list of socks (handled by the `catalogue` microservice).
- 3. To add an item in the catalogue to the user's cart (handled by the `carts` service).
+1. To register and/or login (handled by the `user` microservice).
+2. To view a list of socks (handled by the `catalogue` microservice).
+3. To add an item in the catalogue to the user's cart (handled by the `carts` service).
 
 To achieve this, the frontend of the Sock Shop project was first simplified and refactored to
 generate a monolithic frontend application that uses as few (extra) frontend resources as possible:

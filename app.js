@@ -4,11 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
@@ -18,7 +15,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+const helpersPatternRouter = require('./routes/helpers');
+const baselinePatternsRouter = require('./routes/baseline-patterns');
+const serverSidePatternsRouter = require('./routes/server-side-patterns');
+const clientSidePatternsRouter = require('./routes/client-side-patterns');
+const hybridPatternsRouter = require('./routes/hybrid-patterns');
+
+app.use('/monolith', baselinePatternsRouter);
+app.use('/helpers', helpersPatternRouter);
+app.use('/server-side', serverSidePatternsRouter);
+app.use('/client-side', clientSidePatternsRouter);
+app.use('/hybrid', hybridPatternsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
