@@ -46,3 +46,9 @@ jQuery, js-cookie, and Twitter Bootstrap only. This led to the following impleme
 1. Baseline (simplified) monolithic application.
 2. Single Page Application (SPA) of the monolithic application implemented using ReactJS.
 3. The monolithic application implemented using (7 out of 9) microfrontend patterns.
+
+## Running this project
+1. Ensure that you have a recent version of `node` and `npm` installed.
+2. At the root of this project, run: `npm run install` to install all the dependencies.
+3. After all the dependencies are properly installed, run: `npm run start:dev` to start the project.
+4. Navigate to [API docs](http://localhost:3000/docs) for more information. 
