@@ -1,6 +1,6 @@
 {
   "name": "microfrontend-patterns",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "setup:monolith:spa-reactjs": "cd frontend/monolith-spa-react && npm install && npm run build",

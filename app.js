@@ -33,15 +33,10 @@ app.use('/hybrid', hybridPatternsRouter);
 
 const docsUrl = '/docs';
 app.get(['', '/'], (req, res, next) => res.redirect(302, docsUrl));
-
-app.use(docsUrl, swaggerUi.serve);
-
-const specs = swaggerJsdoc(swaggerOptions);
-app.get(
+app.use(
   docsUrl,
-  swaggerUi.setup(specs, {
-    explorer: true,
-  })
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerJsdoc(swaggerOptions))
 );
 
 // catch 404 and forward to error handler

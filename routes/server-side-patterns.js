@@ -4,16 +4,49 @@ const router = express.Router();
 const ESI = require('nodesi');
 const esi = new ESI({});
 
+/**
+ * @swagger
+ * path:
+ *  /server-side/microfrontend-per-view:
+ *    get:
+ *      summary: Pattern not implemented
+ *      tags: [Server-Side, Not-Implemented]
+ *      responses:
+ *        "200":
+ *          description: n/a
+ */
 router.get('/microfrontend-per-view', (req, res, next) => {
   res.send('Pattern not implemented');
 });
 
+/**
+ * @swagger
+ * path:
+ *  /server-side/ssi:
+ *    get:
+ *      summary: Server-Side Includes
+ *      tags: [Server-Side]
+ *      responses:
+ *        "200":
+ *          description: A webpage that implements the application.
+ */
 router.get('/ssi', (req, res, next) => {
   res.render('index-ssi.twig', {
     title: 'Pattern - Server-Side Includes (SSI)',
   });
 });
 
+/**
+ * @swagger
+ * path:
+ *  /server-side/esi:
+ *    get:
+ *      summary: Edge-Side Includes
+ *      tags: [Server-Side]
+ *      responses:
+ *        "200":
+ *          description: A webpage that implements the application.
+ */
 router.get('/esi', (req, res, next) => {
   res.render(
     'index-esi.twig',

@@ -3,10 +3,10 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'Microfrontend Patterns',
-      version: '1.0.0',
+      version: '0.0.1',
     },
   },
-  apis: [],
+  apis: ['./routes/*.js'],
 };
 
 module.exports = options;
