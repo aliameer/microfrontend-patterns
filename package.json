@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "start-dev": "npm run start-hybrid-patterns-components-registry & DEBUG=express:*,microfrontend-patterns:* node ./bin/www",
-    "start-hybrid-patterns-components-registry": "./node_modules/.bin/oc dev helpers/hybrid-components-registry 3030",
-    "formatter-check": "./node_modules/.bin/prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'",
-    "formatter-fix": "./node_modules/.bin/prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'"
+    "setup:monolith:spa-reactjs": "cd frontend/monolith-spa-react && npm install && npm run build",
+    "setup:client-side:code-level-integration": "cd frontend/code-level-integration && npm install && npm run build",
+    "setup:hybrid:components-registry": "./node_modules/.bin/oc dev helpers/hybrid-components-registry 3030",
+    "start:dev": "DEBUG=express:*,microfrontend-patterns:* node ./bin/www",
+    "start": "npm-run-all setup:*:* & npm run start:dev",
+    "formatter:check": "./node_modules/.bin/prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'",
+    "formatter:fix": "./node_modules/.bin/prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -19,12 +21,13 @@
     "twig": "~0.10.3"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
     "oc": "^0.48.7",
     "prettier": "2.0.4"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run formatter-fix"
+      "pre-commit": "npm run formatter:fix"
     }
   }
 }
