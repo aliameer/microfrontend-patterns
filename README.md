@@ -51,4 +51,4 @@ jQuery, js-cookie, and Twitter Bootstrap only. This led to the following impleme
 1. Ensure that you have a recent version of `node` and `npm` installed.
 2. At the root of this project, run: `npm run install` to install all the dependencies.
 3. After all the dependencies are properly installed, run: `npm run start:dev` to start the project.
-4. Navigate to [API docs](http://localhost:3000/docs) for more information. 
+4. Then, navigate to [API docs](http://localhost:3000/docs) to see the available routes. 

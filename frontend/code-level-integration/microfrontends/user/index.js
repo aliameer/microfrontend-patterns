@@ -26,11 +26,11 @@ $('#user').append(`
 
             <div class="form-group">
               <label>Username</label>
-              <input type="text" class="form-control" name="username" id="user-login-modal-username" />
+              <input type="text" value="user" class="form-control" name="username" id="user-login-modal-username" />
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" name="password" id="user-login-modal-password" />
+              <input type="password" value="password" class="form-control" name="password" id="user-login-modal-password" />
             </div>
           </form>
         </div>
