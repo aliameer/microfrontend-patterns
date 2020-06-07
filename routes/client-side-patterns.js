@@ -62,7 +62,9 @@ router.get('/microfrontend-per-view', (req, res, next) => {
  *          description: A webpage that implements the application.
  */
 router.get('/multiple-microfrontends-per-view', (req, res, next) => {
-  res.send('Pattern not implemented yet');
+  res.render('index-client-side-multiple-microfrontends-per-view.twig', {
+    title: 'Pattern - Client-Side Multiple Microfrontends per View',
+  });
 });
 
 /**
