@@ -1,5 +1,30 @@
-{% extends 'layout.twig' %} {% block head_assets %}{% endblock %} {% block body
-%}
+{% extends 'layout.twig' %} {% block head_assets %}
+<meta name="importmap-type" content="systemjs-importmap" />
+<script type="systemjs-importmap">
+  {
+    "imports": {
+      "catalogue": "http://localhost:3000/javascripts/catalogue.js",
+      "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js"
+    }
+  }
+</script>
+
+<link
+  rel="preload"
+  href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js"
+  as="script"
+  crossorigin="anonymous"
+/>
+
+<script src="https://unpkg.com/core-js-bundle@3.1.4/minified.js"></script>
+<script src="https://unpkg.com/zone.js"></script>
+
+<script src="https://unpkg.com/import-map-overrides@1.15.1/dist/import-map-overrides.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/system.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/amd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-exports.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script>
+{% endblock %} {% block body %}
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Socks Shop</a>
@@ -22,4 +47,17 @@
 
   <div class="container pt-2" id="catalogue"></div>
 </div>
+{% endblock %} {% block scripts %}
+<script>
+  System.import('single-spa').then(function (singleSpa) {
+    singleSpa.registerApplication(
+      'catalogue',
+      () => System.import('catalogue'),
+      (location) => true
+    );
+
+    singleSpa.start();
+  });
+</script>
+<import-map-overrides-full></import-map-overrides-full>
 {% endblock %}
