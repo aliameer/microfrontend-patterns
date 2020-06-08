@@ -1,4 +1,5 @@
 build/
 public/
+dist/
 
 index-esi.twig
