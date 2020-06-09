@@ -28,9 +28,13 @@ class User extends React.Component {
     const customerId = Cookies.get('logged_in');
 
     if (customerId) {
-      getUserDetails(customerId).then((response) => {
+      getUserDetails(customerId).then(
+        (response) => {
         // this.props.doLogin();
-        this.setState({ username: response.data.username, isLoggedIn: true });
+        this.setState({
+          username: response.data.username,
+          isLoggedIn: true
+        });
       });
     }
   }
@@ -38,6 +42,7 @@ class User extends React.Component {
   logout() {
     // this.props.doLogout();
     // this.props.doResetCart();
+    this.setState({username: '', isLoggedIn: false});
     Cookies.remove('logged_in');
   }
 

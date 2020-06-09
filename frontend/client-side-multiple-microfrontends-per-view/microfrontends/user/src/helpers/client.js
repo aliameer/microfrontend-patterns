@@ -8,14 +8,14 @@ const requestDefaults = {
 const getUserDetails = (customerId) => {
   return axios({
     ...requestDefaults,
-    url: `http://localhost:8081/customer/${customerId}`,
+    url: `http://localhost:8080/customers/${customerId}`,
   });
 };
 
 const loginUser = (username, password) => {
   return axios({
     ...requestDefaults,
-    url: 'http://localhost:8081/login',
+    url: 'http://localhost:8080/login',
     auth: { username, password },
   });
 };
@@ -23,7 +23,7 @@ const loginUser = (username, password) => {
 const registerUser = (username, password) => {
   return axios({
     method: 'post',
-    url: 'http://localhost:8081/register',
+    url: 'http://localhost:8080/register',
     data: { username, password },
     withCredentials: true,
   });
