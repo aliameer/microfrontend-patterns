@@ -4,6 +4,12 @@ import ReactDOM from 'react-dom';
 import singleSpaReact from 'single-spa-react';
 import Root from './root.component';
 
+import 'jquery/dist/jquery.slim.min.js';
+import 'popper.js/dist/popper.min.js';
+
+import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/modal';
+
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
