@@ -1,18 +1,14 @@
 <template>
-  <fragment>
-    <AppComponent />
-  </fragment>
+  <AppComponent />
 </template>
 
 <script>
-import {Fragment} from 'vue-fragment';
 import AppComponent from './components/AppComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    AppComponent,
-    Fragment
+    AppComponent
   }
 }
 </script>

@@ -3,10 +3,19 @@
 <script type="systemjs-importmap">
   {
     "imports": {
+{#      "@sock-shop/user": "http://localhost:8081/sock-shop-user.js",#}
+{#      "carts": "http://localhost:8082/js/app.js",#}
+{#      "catalogue": "http://localhost:4200/main.js",#}
+
       "@sock-shop/user": "http://localhost:3000/javascripts/sock-shop-user.js",
       "carts": "http://localhost:3000/javascripts/carts.js",
       "catalogue": "http://localhost:3000/javascripts/catalogue.js",
-      "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.3/system/single-spa.min.js"
+
+      "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.3/system/single-spa.min.js",
+      "js-cookie": "https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js",
+      "jquery": "https://code.jquery.com/jquery-3.5.1.slim.min.js",
+      "popper.js": "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
+      "bootstrap": "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     }
   }
 </script>
@@ -49,6 +58,8 @@
 </div>
 {% endblock %} {% block scripts %}
 <script>
+  System.import('bootstrap').then((bs) => { });
+
   System.import('single-spa').then(function (singleSpa) {
     singleSpa.registerApplication(
       'user',

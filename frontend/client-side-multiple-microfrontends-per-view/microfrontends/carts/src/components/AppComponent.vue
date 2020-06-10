@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <span>
     <a
       class="nav-link dropdown-toggle"
       href="#"
@@ -24,24 +24,22 @@
       </svg>
 
       <span class="badge badge-light" id="carts-items-count">
-        3
-      </span>
+      3
+    </span>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-right" style="width: 400px;">
       <ul class="list-group">
         <li class="list-group-item">Empty cart...</li>
       </ul>
     </div>
-  </fragment>
+  </span>
 </template>
 
 <script>
-import { Fragment } from 'vue-fragment'
 
 export default {
   name: 'AppComponent',
-  components: { Fragment },
   props: {
     msg: String
   }
