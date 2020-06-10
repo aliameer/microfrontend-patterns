@@ -21,9 +21,7 @@ module.exports = (webpackConfigEnv) => {
 
   return webpackMerge.smart(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
-    externals: [
-      'js-cookie', 'jquery', 'popper.js', 'bootstrap'
-    ],
+    externals: ['js-cookie', 'jquery', 'popper.js', 'bootstrap'],
     devServer: {
       port: 8081,
     },
