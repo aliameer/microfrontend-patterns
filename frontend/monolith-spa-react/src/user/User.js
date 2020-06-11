@@ -2,9 +2,9 @@ import React from 'react';
 import Cookies from 'js-cookie';
 
 import { connect } from 'react-redux';
-import { login, logout, resetCart } from '../redux/actions';
+import { addProductToCart, login, logout, resetCart } from '../redux/actions';
 
-import { getUserDetails } from '../helpers/client';
+import { getCart, getProduct, getUserDetails } from '../helpers/client';
 
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
@@ -48,6 +48,14 @@ class User extends React.Component {
 
   onLoginSuccess() {
     this.getUserName();
+
+    getCart().then((response) => {
+      response.data.forEach((prod) => {
+        getProduct(prod.itemId).then((response) => {
+          this.props.addProductToCart(response.data);
+        });
+      });
+    });
   }
 
   onRegisterSuccess() {
@@ -111,6 +119,7 @@ const mapDispatchToProps = (dispatch) => {
     doLogin: () => dispatch(login()),
     doLogout: () => dispatch(logout()),
     doResetCart: () => dispatch(resetCart()),
+    addProductToCart: (product) => dispatch(addProductToCart(product)),
   };
 };
 

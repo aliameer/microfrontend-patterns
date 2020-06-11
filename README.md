@@ -63,6 +63,15 @@ event on the `carts` domain by calling: `$('carts').trigger('carts:initialize-ca
 The carts domain then needs to perform the relevant actions in response. 
 
 #### 0b. Monolithic SPA.
+- Implemented as a ReactJS SPA, created using the
+[creat-react-app](https://reactjs.org/docs/create-a-new-react-app.html) utility.
+- The base dependencies (jQuery, js-cookie, Twitter Bootstrap) are bundled with the SPA.
+- Each domain is implemented as a separate ReactJS component; for example, `<User />` component for
+the `user` domain and so on.  
+- [Redux](https://redux.js.org/) is used for state management as is very common for SPAs these days;
+Redux is also used for communication between the domains where one domain *subscribes* to a certain
+part of the state and another domain pushes changes to the state thereby allowing the first domain
+to respond to changes.
 
 ### Server-Side patterns
 #### 1. Server-Side Microfrontend per View (not implemented) 
