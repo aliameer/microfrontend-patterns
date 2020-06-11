@@ -243,18 +243,7 @@
     <div class="row" id="catalogue-products"></div>
   </div>
 </div>
-{% endblock %} {% block scripts %}
-
-<script>
-  $.ajaxSetup({
-    contentType: 'application/json; charset=utf-8',
-    xhrFields: {
-      withCredentials: true,
-    },
-  });
-</script>
-
-{# User scripts below #}
+{% endblock %} {% block scripts %} {# User scripts below #}
 <script>
   function user_getUsername(id, callback) {
     $.ajax({

@@ -1,5 +1,5 @@
 $('#user').append(`
-  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+  <button class="btn btn-link nav-link dropdown-toggle" type="button" data-toggle="dropdown">
     <svg id="user-i-signin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
       <path d="M3 16 L23 16 M15 8 L23 16 15 24 M21 4 L29 4 29 28 21 28" />
     </svg>
@@ -7,7 +7,7 @@ $('#user').append(`
     <svg id="user-i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
       <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
     </svg>
-  </a>
+  </button>
     
   <div class="dropdown-menu dropdown-menu-right">
     <span id="user-login" class="dropdown-item" data-toggle="modal" data-target="#user-login-modal">Login</span>
@@ -22,7 +22,7 @@ $('#user').append(`
       <div class="modal-content">
         <div class="modal-body">
           <form id="user-login-form" onsubmit="return user_login(event)">
-            <div id="login-failure-message" class="d-none"><div class="alert alert-danger">Invalid login credentials.</div></div>
+            <div id="user-login-failure-message" class="d-none"><div class="alert alert-danger">Invalid login credentials.</div></div>
 
             <div class="form-group">
               <label>Username</label>
@@ -68,13 +68,6 @@ $('#user').append(`
     </div>
   </div>
 `);
-
-$.ajaxSetup({
-  contentType: 'application/json; charset=utf-8',
-  xhrFields: {
-    withCredentials: true,
-  },
-});
 
 function user_getUsername(id, callback) {
   $.ajax({
@@ -128,6 +121,7 @@ function user_initializeNavbar() {
     user_getUsername(userId, function (username) {
       if (typeof username !== 'undefined') {
         user_prepareNavbarForAuthenticatedUser(username);
+        $('#carts').trigger('carts:initialize-cart');
       } else {
         user_prepareNavbarForUnauthenticatedUser();
       }
@@ -136,8 +130,6 @@ function user_initializeNavbar() {
     user_prepareNavbarForUnauthenticatedUser();
   }
 }
-
-user_initializeNavbar();
 
 function user_login(event) {
   event.preventDefault();
@@ -194,3 +186,5 @@ function user_register(event) {
   });
   return false;
 }
+
+user_initializeNavbar();

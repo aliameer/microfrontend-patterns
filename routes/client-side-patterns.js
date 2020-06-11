@@ -14,6 +14,7 @@ const router = express.Router();
 router.get('/code-level-integration', (req, res, next) => {
   res.render('index-code-level-integration.twig', {
     title: 'Pattern - Client-Side Code Level Integration',
+    microfrontendBaseUrl: process.env.MICROFRONTEND_BASE_URL,
   });
 });
 

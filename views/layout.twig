@@ -7,6 +7,16 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+      $.ajaxSetup({
+        contentType: 'application/json; charset=utf-8',
+        xhrFields: {
+          withCredentials: true,
+        },
+      });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
     {% block head_assets %}{% endblock %}
