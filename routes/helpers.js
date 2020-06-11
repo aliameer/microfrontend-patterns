@@ -5,7 +5,9 @@ router.get(
   '/snippet/:microfrontend(user|carts|catalogue)',
   (req, res, next) => {
     const microfrontend = req.params.microfrontend;
-    res.render(`microfrontends/${microfrontend}/${microfrontend}.twig`);
+    res.render(`microfrontends/${microfrontend}/${microfrontend}.twig`, {
+      apiBaseUrl: process.env.API_BASE_URL,
+    });
   }
 );
 

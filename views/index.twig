@@ -14,10 +14,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown" id="user">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
+          <button
+            class="btn btn-link nav-link dropdown-toggle"
+            type="button"
             data-toggle="dropdown"
           >
             <svg
@@ -53,7 +52,7 @@
                 d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z"
               />
             </svg>
-          </a>
+          </button>
 
           <div class="dropdown-menu dropdown-menu-right">
             <span
@@ -204,9 +203,9 @@
           </div>
         </li>
         <li class="nav-item dropdown" id="carts">
-          <a
-            class="nav-link dropdown-toggle"
-            role="button"
+          <button
+            class="btn btn-link nav-link dropdown-toggle"
+            type="button"
             data-toggle="dropdown"
           >
             <svg
@@ -227,7 +226,7 @@
             </svg>
 
             <span class="badge badge-light" id="carts-items-count">0</span>
-          </a>
+          </button>
           <div class="dropdown-menu dropdown-menu-right" style="width: 400px;">
             <ul class="list-group" id="carts-items">
               <li class="list-group-item" id="carts-empty-cart">
@@ -380,13 +379,6 @@
 
 {# Carts scripts below #}
 <script>
-  $.ajaxSetup({
-    contentType: 'application/json; charset=utf-8',
-    xhrFields: {
-      withCredentials: true,
-    },
-  });
-
   $(document).ready(() => {
     $('#carts').on('carts:initialize-cart', () => {
       carts_initializeCart();
@@ -455,13 +447,6 @@
 
 {# Catalogue scripts below #}
 <script>
-  $.ajaxSetup({
-    contentType: 'application/json; charset=utf-8',
-    xhrFields: {
-      withCredentials: true,
-    },
-  });
-
   $(document).ready(() => {
     $.getJSON('{{ apiBaseUrl }}/catalogue', function (data) {
       if (data != null) {

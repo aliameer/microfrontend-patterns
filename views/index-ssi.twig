@@ -1,4 +1,13 @@
 {% extends 'layout.twig' %} {% block body %}
+<script>
+  $.ajaxSetup({
+    contentType: 'application/json; charset=utf-8',
+    xhrFields: {
+      withCredentials: true,
+    },
+  });
+</script>
+
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Socks Shop</a>

@@ -1,7 +1,6 @@
-<a
-  class="nav-link dropdown-toggle"
-  href="#"
-  role="button"
+<button
+  class="btn btn-link nav-link dropdown-toggle"
+  type="button"
   data-toggle="dropdown"
 >
   <svg
@@ -35,7 +34,7 @@
       d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z"
     />
   </svg>
-</a>
+</button>
 
 <div class="dropdown-menu dropdown-menu-right">
   <span
@@ -67,8 +66,10 @@
     <div class="modal-content">
       <div class="modal-body">
         <form id="user-login-form" onsubmit="return user_login(event)">
-          <div id="login-failure-message" class="d-none">
-            <div class="alert alert-danger">Invalid login credentials.</div>
+          <div id="user-login-failure-message" class="d-none">
+            <div class="alert alert-danger">
+              Invalid login credentials.
+            </div>
           </div>
 
           <div class="form-group">
@@ -77,6 +78,7 @@
               type="text"
               class="form-control"
               name="username"
+              value="user"
               id="user-login-modal-username"
             />
           </div>
@@ -86,6 +88,7 @@
               type="password"
               class="form-control"
               name="password"
+              value="password"
               id="user-login-modal-password"
             />
           </div>
@@ -158,16 +161,9 @@
 </div>
 
 <script>
-  $.ajaxSetup({
-    contentType: 'application/json; charset=utf-8',
-    xhrFields: {
-      withCredentials: true,
-    },
-  });
-
   function user_getUsername(id, callback) {
     $.ajax({
-      url: `http://localhost:8080/customers/${id}`,
+      url: `{{ apiBaseUrl }}/customers/${id}`,
       type: 'GET',
       success: (data) => {
         const json = JSON.parse(data);
@@ -216,6 +212,7 @@
     if (userId) {
       user_getUsername(userId, function (username) {
         if (typeof username !== 'undefined') {
+          $('#carts').trigger('carts:initialize-cart');
           user_prepareNavbarForAuthenticatedUser(username);
         } else {
           user_prepareNavbarForUnauthenticatedUser();
@@ -226,8 +223,6 @@
     }
   }
 
-  user_initializeNavbar();
-
   function user_login(event) {
     event.preventDefault();
 
@@ -235,7 +230,7 @@
     const password = $('#user-login-modal-password').val();
 
     $.ajax({
-      url: 'http://localhost:8080/login',
+      url: '{{ apiBaseUrl }}/login',
       type: 'GET',
       async: false,
       success: () => {
@@ -266,7 +261,7 @@
     event.preventDefault();
 
     $.ajax({
-      url: 'http://localhost:8080/register',
+      url: '{{ apiBaseUrl }}/register',
       type: 'POST',
       async: false,
       data: JSON.stringify({
@@ -283,4 +278,6 @@
     });
     return false;
   }
+
+  user_initializeNavbar();
 </script>

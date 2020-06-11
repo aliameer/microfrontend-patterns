@@ -33,6 +33,7 @@ router.get('/microfrontend-per-view', (req, res, next) => {
 router.get('/ssi', (req, res, next) => {
   res.render('index-ssi.twig', {
     title: 'Pattern - Server-Side Includes (SSI)',
+    apiBaseUrl: process.env.API_BASE_URL,
   });
 });
 
@@ -52,7 +53,7 @@ router.get('/esi', (req, res, next) => {
     'index-esi.twig',
     {
       title: 'Pattern - Edge-Side Includes (ESI)',
-      microfrontendBaseUrl: 'http://localhost:3000',
+      microfrontendBaseUrl: process.env.MICROFRONTEND_BASE_URL,
     },
     async (err, html) => res.send(await esi.process(html))
   );
