@@ -4,6 +4,8 @@ import { getCart, getProduct } from '../helpers/client';
 
 import { connect } from 'react-redux';
 import { addProductToCart } from '../redux/actions';
+import ProductListItem from './ProductListItem';
+import CartsCartIcon from './CartsCartIcon';
 
 class Carts extends React.Component {
   componentDidMount() {
@@ -18,23 +20,7 @@ class Carts extends React.Component {
 
   render() {
     const productItems = this.props.products.map((prod, idx) => {
-      return (
-        <li className="list-group-item" key={idx}>
-          <div className="media">
-            <img
-              alt={prod.name}
-              className="mr-3"
-              width="64"
-              src={`${process.env.REACT_APP_BASE_URL}${prod.imageUrl[0]}`}
-            />
-            <div className="media-body">
-              <h5 className="mt-0">
-                {prod.name} - {prod.price}
-              </h5>
-            </div>
-          </div>
-        </li>
-      );
+      return <ProductListItem product={prod} key={idx} />;
     });
 
     const styles = {
@@ -47,22 +33,7 @@ class Carts extends React.Component {
           className="btn btn-link nav-link dropdown-toggle"
           data-toggle="dropdown"
         >
-          <svg
-            id="i-cart"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 32 32"
-            width="32"
-            height="32"
-            fill="none"
-            stroke="currentcolor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-          >
-            <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
-            <circle cx="25" cy="27" r="2" />
-            <circle cx="12" cy="27" r="2" />
-          </svg>
+          <CartsCartIcon />
 
           <span className="badge badge-light" id="carts-items-count">
             {this.props.products.length}
