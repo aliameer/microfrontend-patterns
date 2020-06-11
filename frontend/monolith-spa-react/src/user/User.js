@@ -57,10 +57,8 @@ class User extends React.Component {
         <LoginModal onLoginSuccess={this.onLoginSuccess} />
         <RegisterModal onRegisterSuccess={this.onRegisterSuccess} />
 
-        <a
-          className="nav-link dropdown-toggle"
-          href="#"
-          role="button"
+        <button
+          className="btn btn-link nav-link dropdown-toggle"
           data-toggle="dropdown"
         >
           {!this.props.isLoggedIn ? (
@@ -72,9 +70,9 @@ class User extends React.Component {
               height="32"
               fill="none"
               stroke="currentcolor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             >
               <path d="M3 16 L23 16 M15 8 L23 16 15 24 M21 4 L29 4 29 28 21 28" />
             </svg>
@@ -94,7 +92,7 @@ class User extends React.Component {
               <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
             </svg>
           )}
-        </a>
+        </button>
         <div className="dropdown-menu dropdown-menu-right">
           {!this.props.isLoggedIn && (
             <React.Fragment>

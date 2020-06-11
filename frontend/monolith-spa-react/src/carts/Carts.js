@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import { addProductToCart } from '../redux/actions';
 
 class Carts extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     getCart().then((response) => {
       response.data.forEach((prod) => {
@@ -26,6 +22,7 @@ class Carts extends React.Component {
         <li className="list-group-item" key={idx}>
           <div className="media">
             <img
+              alt={prod.name}
               className="mr-3"
               width="64"
               src={`${process.env.REACT_APP_BASE_URL}${prod.imageUrl[0]}`}
@@ -46,10 +43,8 @@ class Carts extends React.Component {
 
     return (
       <React.Fragment>
-        <a
-          className="nav-link dropdown-toggle"
-          href="#"
-          role="button"
+        <button
+          className="btn btn-link nav-link dropdown-toggle"
           data-toggle="dropdown"
         >
           <svg
@@ -72,7 +67,7 @@ class Carts extends React.Component {
           <span className="badge badge-light" id="carts-items-count">
             {this.props.products.length}
           </span>
-        </a>
+        </button>
 
         <div className="dropdown-menu dropdown-menu-right" style={styles}>
           <ul className="list-group">

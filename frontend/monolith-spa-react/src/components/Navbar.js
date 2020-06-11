@@ -6,9 +6,8 @@ import Carts from './../carts/Carts';
 export default function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="#">
-        Socks Shop
-      </a>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <a className="navbar-brand">Socks Shop</a>
       <button
         className="navbar-toggler"
         type="button"
