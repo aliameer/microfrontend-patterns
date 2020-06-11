@@ -1,31 +1,23 @@
-import axios from 'axios';
+const axios = require('axios').default;
 
-const requestDefaults = {
+const instance = axios.create({
   method: 'get',
+  baseURL: 'http://localhost:8080',
   withCredentials: true,
-};
+});
 
-const getUserDetails = (customerId) => {
-  return axios({
-    ...requestDefaults,
-    url: `http://localhost:8080/customers/${customerId}`,
-  });
-};
+const getUserDetails = (customerId) => instance.get(`/customers/${customerId}`);
 
 const loginUser = (username, password) => {
-  return axios({
-    ...requestDefaults,
-    url: 'http://localhost:8080/login',
+  return instance.get('/login', {
     auth: { username, password },
   });
 };
 
 const registerUser = (username, password) => {
-  return axios({
-    method: 'post',
-    url: 'http://localhost:8080/register',
-    data: { username, password },
-    withCredentials: true,
+  return instance.post('/register', {
+    username,
+    password
   });
 };
 

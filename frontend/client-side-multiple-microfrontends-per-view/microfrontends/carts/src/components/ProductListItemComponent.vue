@@ -1,0 +1,26 @@
+<template>
+  <li class="list-group-item">
+    <div class="media">
+      <img
+        class="mr-3"
+        width="64"
+        :src="`http://localhost:8080${product.imageUrl[0]}`"
+      />
+      <div class="media-body">
+        <h5 class="mt-0">
+          {{product.name}} - {{product.price}}
+        </h5>
+      </div>
+    </div>
+  </li>
+</template>
+
+<script>
+    export default {
+        name: 'ProductListItemComponent',
+        props: {
+          product: Object
+        }
+    }
+</script>
+

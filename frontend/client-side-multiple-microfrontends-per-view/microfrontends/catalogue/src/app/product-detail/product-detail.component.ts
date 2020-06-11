@@ -14,6 +14,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onAddToCart(product: Product) {
-    console.log('add to cart: ', product);
+    document.getElementById('carts')
+      .dispatchEvent(
+        new CustomEvent('add-product-to-cart', { detail: product })
+      );
   }
 }

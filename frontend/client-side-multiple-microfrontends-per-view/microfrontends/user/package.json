@@ -24,6 +24,7 @@
     "@testing-library/react": "^9.4.0",
     "@types/jest": "^25.2.1",
     "@types/systemjs": "^6.1.0",
+    "axios": "^0.19.2",
     "babel-eslint": "^11.0.0-beta.2",
     "babel-jest": "^24.9.0",
     "concurrently": "^5.0.1",
@@ -36,6 +37,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.2.7",
     "jest-cli": "^25.2.7",
+    "js-cookie": "^2.2.1",
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
     "single-spa-react": "^2.14.0",
@@ -47,7 +49,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "axios": "^0.19.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }

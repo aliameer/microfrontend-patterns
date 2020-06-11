@@ -24,13 +24,17 @@
       </svg>
 
       <span class="badge badge-light" id="carts-items-count">
-      3
-    </span>
+        {{productItems.length || 0}}
+      </span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" style="width: 400px;">
       <ul class="list-group">
-        <li class="list-group-item">Empty cart...</li>
+        <li v-if="productItems.length == 0" class="list-group-item">Empty cart...</li>
+        <ProductListItemComponent
+          v-for="(prod, idx) in productItems"
+          v-bind:product="prod"
+          v-bind:key="idx" />
       </ul>
     </div>
   </span>
@@ -38,10 +42,39 @@
 
 <script>
 
+import ProductListItemComponent from "./ProductListItemComponent";
+import { getCart, getProduct } from "../api/client";
+
 export default {
   name: 'AppComponent',
+  components: {ProductListItemComponent},
   props: {
-    msg: String
+    productItems: {
+      default: () => [],
+      type: Array
+    }
+  },
+  mounted() {
+    const cartsMicrofrontend = document.getElementById('carts');
+
+    cartsMicrofrontend.addEventListener('add-product-to-cart', (ev) => {
+      const product = ev.detail;
+      this.productItems.push(product);
+    });
+
+    cartsMicrofrontend.addEventListener('initialize-cart', () => {
+      getCart().then((response) => {
+        response.data.forEach((prod) => {
+          getProduct(prod.itemId).then((response) => {
+            this.productItems.push(response.data);
+          });
+        });
+      });
+    });
+
+    cartsMicrofrontend.addEventListener('reset-cart', () => {
+      this.productItems = [];
+    });
   }
 }
 </script>
