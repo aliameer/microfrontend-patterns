@@ -93,7 +93,7 @@
                     id="user-login-form"
                     onsubmit="return user_login(event)"
                   >
-                    <div id="login-failure-message" class="d-none">
+                    <div id="user-login-failure-message" class="d-none">
                       <div class="alert alert-danger">
                         Invalid login credentials.
                       </div>
@@ -105,6 +105,7 @@
                         type="text"
                         class="form-control"
                         name="username"
+                        value="user"
                         id="user-login-modal-username"
                       />
                     </div>
@@ -114,6 +115,7 @@
                         type="password"
                         class="form-control"
                         name="password"
+                        value="password"
                         id="user-login-modal-password"
                       />
                     </div>
@@ -244,7 +246,7 @@
   </div>
 </div>
 {% endblock %} {% block scripts %}
-<!-- user microfrontend scripts -->
+
 <script>
   $.ajaxSetup({
     contentType: 'application/json; charset=utf-8',
@@ -252,10 +254,13 @@
       withCredentials: true,
     },
   });
+</script>
 
+{# User scripts below #}
+<script>
   function user_getUsername(id, callback) {
     $.ajax({
-      url: `http://localhost:8080/customers/${id}`,
+      url: `{{ apiBaseUrl }}/customers/${id}`,
       type: 'GET',
       success: (data) => {
         const json = JSON.parse(data);
@@ -304,6 +309,7 @@
     if (userId) {
       user_getUsername(userId, function (username) {
         if (typeof username !== 'undefined') {
+          $('#carts').trigger('carts:initialize-cart');
           user_prepareNavbarForAuthenticatedUser(username);
         } else {
           user_prepareNavbarForUnauthenticatedUser();
@@ -314,8 +320,6 @@
     }
   }
 
-  user_initializeNavbar();
-
   function user_login(event) {
     event.preventDefault();
 
@@ -323,7 +327,7 @@
     const password = $('#user-login-modal-password').val();
 
     $.ajax({
-      url: 'http://localhost:8080/login',
+      url: '{{ apiBaseUrl }}/login',
       type: 'GET',
       async: false,
       success: () => {
@@ -354,7 +358,7 @@
     event.preventDefault();
 
     $.ajax({
-      url: 'http://localhost:8080/register',
+      url: '{{ apiBaseUrl }}/register',
       type: 'POST',
       async: false,
       data: JSON.stringify({
@@ -371,9 +375,11 @@
     });
     return false;
   }
+
+  user_initializeNavbar();
 </script>
 
-<!-- carts microfrontend scripts -->
+{# Carts scripts below #}
 <script>
   $.ajaxSetup({
     contentType: 'application/json; charset=utf-8',
@@ -397,28 +403,25 @@
   });
 
   function carts_initializeCart() {
-    $.getJSON('http://localhost:8080/cart', {}, (items) => {
+    $.getJSON('{{ apiBaseUrl }}/cart', {}, (items) => {
       if (items != null) {
         let numItemsInCart = 0;
         $.each(items, (index, itm) => {
           if (itm != null && itm.itemId != null) {
-            $.getJSON(
-              `http://localhost:8080/catalogue/${itm.itemId}`,
-              (product) => {
-                numItemsInCart = numItemsInCart + itm.quantity;
+            $.getJSON(`{{ apiBaseUrl }}/catalogue/${itm.itemId}`, (product) => {
+              numItemsInCart += itm.quantity;
 
-                $('#carts-items').append(`
+              $('#carts-items').append(`
                   <li class="list-group-item c-item">
                       <div class="media">
-                        <img class="mr-3" src="http://localhost:8080${product.imageUrl[0]}" width="60" />
+                        <img class="mr-3" src="{{ apiBaseUrl }}${product.imageUrl[0]}" width="60" />
                         <div class="media-body">
-                          <h5 class="mt-0">${product.name} - ${product.price}</h5>
+                          <h5 class="mt-0">${product.name} - &dollar;${product.price}</h5>
                         </div>
                       </div>
                   </li>
                 `);
-              }
-            ).always(() => {
+            }).always(() => {
               $('#carts-items-count').text(numItemsInCart);
 
               if (numItemsInCart > 0) {
@@ -433,7 +436,7 @@
 
   function carts_addToCart(id) {
     $.ajax({
-      url: 'http://localhost:8080/cart',
+      url: '{{ apiBaseUrl }}/cart',
       type: 'POST',
       data: JSON.stringify({ id: id }),
       success: function () {
@@ -451,7 +454,7 @@
   }
 </script>
 
-<!-- catalogue microfronteds scripts -->
+{# Catalogue scripts below #}
 <script>
   $.ajaxSetup({
     contentType: 'application/json; charset=utf-8',
@@ -461,20 +464,20 @@
   });
 
   $(document).ready(() => {
-    $.getJSON('http://localhost:8080/catalogue', function (data) {
+    $.getJSON('{{ apiBaseUrl }}/catalogue', function (data) {
       if (data != null) {
         $.each(data, function (index, element) {
           $('#catalogue-products').append(
             `<div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="#">
-                  <img class="card-img-top" src="http://localhost:8080${element.imageUrl[0]}" />
+                  <img class="card-img-top" src="{{ apiBaseUrl }}${element.imageUrl[0]}" />
                 </a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="#">${element.name}</a>
                   </h4>
-                  <h5>${element.price}</h5>
+                  <h5>&dollar;${element.price}</h5>
                   <p class="card-text">${element.description}</p>
                 </div>
                 <div class="card-footer text-right">

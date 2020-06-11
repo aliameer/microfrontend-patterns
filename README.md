@@ -34,7 +34,7 @@ generate a monolithic frontend application that uses as few (extra) frontend res
 [Bootstrap](https://getbootstrap.com/) only. This led to the following implementations,
 
 1. Baseline (simplified) monolithic application.
-2. Single Page Application (SPA) of the baseline monolithic application implemented using
+2. Single Page Application (SPA) version of the baseline monolithic application implemented using
 [ReactJS](https://reactjs.org/).
 3. The baseline monolithic application implemented using each of (7 out of 9)
 microfrontend patterns.
@@ -46,6 +46,23 @@ microfrontend patterns.
 project and it is run locally as a set of Docker containers.
 
 ## List of patterns
+
+### Baseline applications
+#### 0a. Monolithic application.
+- Implemented as a single flat HTML file.
+- Each domain (user, carts, catalogue) has a corresponding HTML element in the document with the
+relevant ID. For example, the user domain it is: `<li class="nav-item dropdown" id="user">...</li>`.
+- Each domain assumes the presence of jQuery, js-cookies, and Twitter Bootstrap (CSS and JS).
+- Each domain uses namespaces for HTML, and JS to avoid collisions. For example, all JS functions
+for the `user` domain are prefixed with `user_` and those for the `catalogue` domain are prefixed
+with `catalogue_`.
+- Communication between domains is performed using jQuery custom events. The names of the custom
+events to follow pre-agreed conventions; the events are triggered on the HTML element designated
+with the ID of the relevant domain. For example, the `user` domain can trigger an "initialize cart"
+event on the `carts` domain by calling: `$('carts').trigger('carts:initialize-cart')`.
+The carts domain then needs to perform the relevant actions in response. 
+
+#### 0b. Monolithic SPA.
 
 ### Server-Side patterns
 #### 1. Server-Side Microfrontend per View (not implemented) 

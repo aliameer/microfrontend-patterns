@@ -14,7 +14,10 @@ const router = express.Router();
  *          description: A webpage that implements the application.
  */
 router.get('', (req, res, next) => {
-  res.render('index.twig', { title: 'Pattern - Monolith' });
+  res.render('index.twig', {
+    apiBaseUrl: process.env.API_BASE_URL,
+    title: 'Pattern - Monolith',
+  });
 });
 
 /**
