@@ -41,14 +41,16 @@ class User extends React.Component {
     this.setState({ username: '', isLoggedIn: false });
     Cookies.remove('logged_in');
 
-    document.getElementById('carts')
+    document
+      .getElementById('carts')
       .dispatchEvent(new CustomEvent('reset-cart'));
   }
 
   onLoginSuccess() {
     this.getUserName();
 
-    document.getElementById('carts')
+    document
+      .getElementById('carts')
       .dispatchEvent(new CustomEvent('initialize-cart'));
   }
 

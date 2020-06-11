@@ -17,7 +17,7 @@ const loginUser = (username, password) => {
 const registerUser = (username, password) => {
   return instance.post('/register', {
     username,
-    password
+    password,
   });
 };
 
