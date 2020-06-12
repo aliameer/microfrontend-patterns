@@ -77,33 +77,47 @@ to respond to changes.
 #### 1. Server-Side Microfrontend per View (not implemented) 
 
 #### 2. Server-Side Includes (SSI)
-This pattern is implemented using the "include" feature of the *twig* view engine in ExpressJS.
+- Implemented using the "include" feature of the [*twig*](https://www.npmjs.com/package/twig)
+view engine in ExpressJS.
+- Each microfrontend is represented as a partial template that is included in the base template
+during runtime. 
 
 #### 3. Edge-Side Includes (ESI) (variant of pattern 2.)
-This pattern is implemented using the [nodesi](https://www.npmjs.com/package/nodesi) package.
+- Implemented using the [nodesi](https://www.npmjs.com/package/nodesi) package.
+- Each microfrontend is represented as an HTML snippet that is included in the base template during
+runtime from a remote URL, using an [esi:include](https://www.w3.org/TR/esi-lang/) tag.
+This therefore requires each microfrontend to be served as an HTTP response. 
 
 ### Client-Side patterns
 #### 4. Client-Side Code Level Integration.
-This pattern is implemented using local [npm](https://www.npmjs.com/) packages that are combined
-using [GulpJS](https://gulpjs.com/). 
+- Implemented using local [npm](https://www.npmjs.com/) packages that are combined
+using [GulpJS](https://gulpjs.com/) into a single JS artifact.
+- Each microfrontend is assigned an HTML element (with a prescribed ID) in the base HTML document.
+The JS for each microfrontend then takes care of inserting the relevent content as children of the
+base HTML element of each microfrontend. 
 
 #### 5. Client-Side Includes (CSI)
-This pattern is implemented using jQuery's [load](https://api.jquery.com/load/) feature.
+- Implemented using jQuery's [load](https://api.jquery.com/load/) feature.
+- Each microfrontend is assigned an HTML element (with a prescribed ID) in the base HTML document.
+The content for each microfrontend is loaded from a remote URL and inserted as children of the base
+HTML element of each microfrontend
 
 #### 6. Client-Side Microfrontend per View (not implemented)
 
 #### 7. Client-Side Multiple Microfrontends per View (variant of pattern 6.)
-This pattern is implemented using the [Single-SPA](https://single-spa.js.org/) framework.
+- Implemented using the [Single-SPA](https://single-spa.js.org/) framework.
+- User microfrontend implemented using ReactJS.
+- Carts microfrontend implemented using VueJS.
+- Catalogue microfrontendn implemented using Angular.
 
 #### 8. Client-Side Composition using Iframes
-This pattern is implemented using the browser native iframes and the
+- Implemented using the browser native iframes and the
 [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) API for
 communication.
 
 ### Hybrid Patterns
 #### 9. Hybrid Composition of Fragments
-This pattern is implemented using the [OpenComponents](https://opencomponents.github.io/)
-framework.
+- Implemented using the [OpenComponents](https://opencomponents.github.io/) framework.
 
 ## Running this project
 1. At the root of this project, open a terminal and run: `docker-compose up` to spin up the API
