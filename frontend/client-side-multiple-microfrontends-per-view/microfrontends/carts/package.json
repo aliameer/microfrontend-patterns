@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve --port 8082",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && cp dist/js/app.js ../../../../public/carts.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
