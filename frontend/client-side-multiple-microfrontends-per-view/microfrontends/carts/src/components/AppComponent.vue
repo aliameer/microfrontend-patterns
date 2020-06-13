@@ -1,9 +1,8 @@
 <template>
   <span>
-    <a
-      class="nav-link dropdown-toggle"
-      href="#"
-      role="button"
+    <button
+      class="btn btn-link nav-link dropdown-toggle"
+      type="button"
       data-toggle="dropdown"
     >
       <svg
@@ -26,7 +25,7 @@
       <span class="badge badge-light" id="carts-items-count">
         {{productItems.length || 0}}
       </span>
-    </a>
+    </button>
 
     <div class="dropdown-menu dropdown-menu-right" style="width: 400px;">
       <ul class="list-group">

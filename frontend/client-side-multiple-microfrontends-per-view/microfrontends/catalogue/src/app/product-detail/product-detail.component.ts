@@ -1,17 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Product} from "../product";
+import {environment} from "../../environments/environment";
 
 @Component({
-  selector: 'app-product-detail',
+  selector: 'product-detail',
   templateUrl: './product-detail.component.html',
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent {
   @Input() product: Product;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  dollarSign: String = String.fromCharCode(36);
+  apiBaseUrl: String = environment.apiBaseUrl;
 
   onAddToCart(product: Product) {
     document.getElementById('carts')

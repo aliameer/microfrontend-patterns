@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --deploy-url /dist/ --output-hashing none",
+    "start": "ng s --project catalogue --disable-host-check --port 4200 --deploy-url http://localhost:4200/ --live-reload false",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build:single-spa:catalogue": "ng build --prod --deploy-url /dist/ --output-hashing none",
-    "serve:single-spa:catalogue": "ng s --project catalogue --disable-host-check --port 4200 --deploy-url http://localhost:4200/ --live-reload false"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

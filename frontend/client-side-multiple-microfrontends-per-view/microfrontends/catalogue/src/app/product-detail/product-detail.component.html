@@ -1,12 +1,8 @@
 <div *ngIf="product" class="card h-100">
-  <a href="#">
-    <img class="card-img-top" src="http://localhost:8080{{ product.imageUrl[0] }}" />
-  </a>
+  <img class="card-img-top" src="{{ apiBaseUrl }}{{ product.imageUrl[0] }}" />
   <div class="card-body">
-    <h4 class="card-title">
-      <a href="#">{{ product.name }}</a>
-    </h4>
-    <h5>{{ product.price }}</h5>
+    <h4 class="card-title">{{ product.name }}</h4>
+    <h5>{{dollarSign}}{{ product.price }}</h5>
     <p class="card-text">{{ product.description }}</p>
   </div>
   <div class="card-footer text-right">

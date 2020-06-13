@@ -8,7 +8,7 @@
       />
       <div class="media-body">
         <h5 class="mt-0">
-          {{product.name}} - {{product.price}}
+          {{product.name}} - &dollar;{{product.price}}
         </h5>
       </div>
     </div>

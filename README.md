@@ -108,7 +108,15 @@ HTML element of each microfrontend
 - Implemented using the [Single-SPA](https://single-spa.js.org/) framework.
 - User microfrontend implemented using ReactJS.
 - Carts microfrontend implemented using VueJS.
-- Catalogue microfrontendn implemented using Angular.
+- Catalogue microfrontend implemented using Angular.
+- Each microfrontend was created using the 
+[create-single-spa](https://single-spa.js.org/docs/create-single-spa/) utility.
+- The base HTML document contains designated HTML elements for each microfrontend; the Single SPA
+framework takes care of bootstrapPing and mounting the relevant SPA to that HTML element.
+- Single-SPA bundles each microfrontend using SystemJS and also prescribes using SystemJS for shared
+dependencies such as (jQuery, js-cookies, and Twitter Bootstrap etc.).
+- The microfrontends communicate with each other using
+[CustomEvents](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent).
 
 #### 8. Client-Side Composition using Iframes
 - Implemented using the browser native iframes and the
