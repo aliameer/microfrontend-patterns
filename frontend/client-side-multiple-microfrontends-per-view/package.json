@@ -1,0 +1,9 @@
+{
+  "name": "client-side-multiple-microfrontends-per-view",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "cd microfrontends/user && npm run build && cd ../carts && npm run build && cd ../catalogue && npm run build"
+  }
+}

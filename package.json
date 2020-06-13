@@ -5,11 +5,12 @@
   "scripts": {
     "setup:monolith:spa-reactjs": "cd frontend/monolith-spa-react && npm install && npm run build",
     "setup:client-side:code-level-integration": "cd frontend/code-level-integration && npm install && npm run build",
-    "setup:hybrid:components-registry": "./node_modules/.bin/oc dev helpers/hybrid-components-registry 3030",
+    "setup:client-side:multiple-microfrontends-per-view": "cd frontend/client-side-multiple-microfrontends-per-view/microfrontends && npm run build",
+    "setup:hybrid:components-registry": "oc dev helpers/hybrid-components-registry 3030",
     "start:dev": "DEBUG=express:*,microfrontend-patterns:* node ./bin/www",
     "start": "npm-run-all setup:*:* & npm run start:dev",
-    "formatter:check": "./node_modules/.bin/prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'",
-    "formatter:fix": "./node_modules/.bin/prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'"
+    "formatter:check": "prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'",
+    "formatter:fix": "prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

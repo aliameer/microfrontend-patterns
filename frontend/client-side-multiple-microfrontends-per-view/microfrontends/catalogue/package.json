@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build --prod --deploy-url /dist/ --output-hashing none",
+    "build": "ng build --prod --deploy-url /dist/ --output-hashing none --source-map=false && cp dist/catalogue/main-es2015.js ../../../../public/catalogue.js",
     "start": "ng s --project catalogue --disable-host-check --port 4200 --deploy-url http://localhost:4200/ --live-reload false",
     "test": "ng test",
     "lint": "ng lint",
@@ -30,7 +30,6 @@
     "@angular-devkit/build-angular": "~0.901.7",
     "@angular/cli": "~9.1.7",
     "@angular/compiler-cli": "~9.1.9",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^5.1.2",
