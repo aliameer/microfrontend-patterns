@@ -9,7 +9,7 @@ const esi = new ESI({});
  * path:
  *  /server-side/microfrontend-per-view:
  *    get:
- *      summary: Pattern not implemented
+ *      summary: Pattern not implemented.
  *      tags: [Server-Side, Not-Implemented]
  *      responses:
  *        "200":
@@ -24,7 +24,7 @@ router.get('/microfrontend-per-view', (req, res, next) => {
  * path:
  *  /server-side/ssi:
  *    get:
- *      summary: Server-Side Includes
+ *      summary: Server-Side Includes.
  *      tags: [Server-Side]
  *      responses:
  *        "200":
@@ -42,7 +42,7 @@ router.get('/ssi', (req, res, next) => {
  * path:
  *  /server-side/esi:
  *    get:
- *      summary: Edge-Side Includes
+ *      summary: Edge-Side Includes.
  *      tags: [Server-Side]
  *      responses:
  *        "200":

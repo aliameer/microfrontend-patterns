@@ -6,6 +6,7 @@ const router = express.Router();
  * path:
  *  /hybrid/fragment-composition:
  *    get:
+ *      summary: Implemented using OpenComponents framework.
  *      tags: [Hybrid]
  *      responses:
  *        "200":

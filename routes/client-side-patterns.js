@@ -41,7 +41,7 @@ router.get('/csi', (req, res, next) => {
  * path:
  *  /client-side/microfrontend-per-view:
  *    get:
- *      summary: Pattern not implemented
+ *      summary: Pattern not implemented.
  *      tags: [Client-Side, Not-Implemented]
  *      responses:
  *        "200":
@@ -56,7 +56,7 @@ router.get('/microfrontend-per-view', (req, res, next) => {
  * path:
  *  /client-side/multiple-microfrontends-per-view:
  *    get:
- *      summary: Implemented using Single-SPA framework
+ *      summary: Implemented using Single-SPA framework.
  *      tags: [Client-Side]
  *      responses:
  *        "200":
