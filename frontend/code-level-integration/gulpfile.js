@@ -5,7 +5,7 @@ function defaultTask(cb) {
   return gulp
     .src('./microfrontends/**/*.js')
     .pipe(concat('code-level-integration.js'))
-    .pipe(gulp.dest('./../../public/javascripts'));
+    .pipe(gulp.dest('./../../public'));
   cb();
 }
 

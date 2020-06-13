@@ -32,7 +32,7 @@ router.get('', (req, res, next) => {
  *          description: A webpage that implements the application.
  */
 router.get('/spa-reactjs', function (req, res) {
-  res.sendFile(path.resolve(`${__dirname}/../public/build`, 'index.html'));
+  res.sendFile(path.resolve(`${__dirname}/../public`, 'index.html'));
 });
 
 module.exports = router;
