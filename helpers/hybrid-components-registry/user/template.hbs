@@ -1,7 +1,6 @@
-<a
-  class="nav-link dropdown-toggle"
-  href="#"
-  role="button"
+<button
+  class="btn btn-link nav-link dropdown-toggle"
+  type="button"
   data-toggle="dropdown"
 >
   <svg
@@ -35,7 +34,7 @@
       d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z"
     />
   </svg>
-</a>
+</button>
 
 <div class="dropdown-menu dropdown-menu-right">
   <span
@@ -67,7 +66,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <form id="user-login-form" onsubmit="return user_login(event)">
-          <div id="login-failure-message" class="d-none">
+          <div id="user-login-failure-message" class="d-none">
             <div class="alert alert-danger">Invalid login credentials.</div>
           </div>
 
@@ -75,6 +74,7 @@
             <label>Username</label>
             <input
               type="text"
+              value="user"
               class="form-control"
               name="username"
               id="user-login-modal-username"
@@ -84,6 +84,7 @@
             <label>Password</label>
             <input
               type="password"
+              value="pass"
               class="form-control"
               name="password"
               id="user-login-modal-password"
@@ -158,13 +159,6 @@
 </div>
 
 <script>
-  $.ajaxSetup({
-    contentType: 'application/json; charset=utf-8',
-    xhrFields: {
-      withCredentials: true,
-    },
-  });
-
   function user_getUsername(id, callback) {
     $.ajax({
       url: `http://localhost:8080/customers/${id}`,
@@ -217,6 +211,7 @@
       user_getUsername(userId, function (username) {
         if (typeof username !== 'undefined') {
           user_prepareNavbarForAuthenticatedUser(username);
+          $('#carts').trigger('carts:initialize-cart');
         } else {
           user_prepareNavbarForUnauthenticatedUser();
         }
@@ -225,8 +220,6 @@
       user_prepareNavbarForUnauthenticatedUser();
     }
   }
-
-  user_initializeNavbar();
 
   function user_login(event) {
     event.preventDefault();
@@ -283,4 +276,6 @@
     });
     return false;
   }
+
+  user_initializeNavbar();
 </script>

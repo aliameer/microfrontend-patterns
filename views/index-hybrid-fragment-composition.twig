@@ -34,5 +34,13 @@
   </div>
 </div>
 {% endblock %} {% block scripts %}
+<script>
+  $.ajaxSetup({
+    contentType: 'application/json; charset=utf-8',
+    xhrFields: {
+      withCredentials: true,
+    },
+  });
+</script>
 <script src="{{ componentRegistryBaseUrl }}/oc-client/client.js"></script>
 {% endblock %}

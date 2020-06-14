@@ -1,7 +1,6 @@
-<a
-  class="nav-link dropdown-toggle"
-  href="#"
-  role="button"
+<button
+  class="btn btn-link nav-link dropdown-toggle"
+  type="button"
   data-toggle="dropdown"
 >
   <svg
@@ -22,7 +21,7 @@
   </svg>
 
   <span class="badge badge-light" id="carts-items-count">0</span>
-</a>
+</button>
 <div class="dropdown-menu dropdown-menu-right" style="width: 400px;">
   <ul class="list-group" id="carts-items">
     <li class="list-group-item" id="carts-empty-cart">Empty cart...</li>
@@ -30,13 +29,6 @@
 </div>
 
 <script>
-  $.ajaxSetup({
-    contentType: 'application/json; charset=utf-8',
-    xhrFields: {
-      withCredentials: true,
-    },
-  });
-
   $(document).ready(() => {
     $('#carts').on('carts:initialize-cart', () => {
       carts_initializeCart();
@@ -60,14 +52,14 @@
             $.getJSON(
               `http://localhost:8080/catalogue/${itm.itemId}`,
               (product) => {
-                numItemsInCart = numItemsInCart + itm.quantity;
+                numItemsInCart += itm.quantity;
 
                 $('#carts-items').append(`
                   <li class="list-group-item c-item">
                     <div class="media">
                       <img class="mr-3" src="http://localhost:8080${product.imageUrl[0]}" width="60" />
                       <div class="media-body">
-                        <h5 class="mt-0">${product.name} - ${product.price}</h5>
+                        <h5 class="mt-0">${product.name} - &dollar;${product.price}</h5>
                       </div>
                     </div>
                   </li>

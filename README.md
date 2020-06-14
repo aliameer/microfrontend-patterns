@@ -135,4 +135,7 @@ Run `sudo docker-compose up` instead if you are running Linux.
 3. At the root of this project, open another terminal and run: `npm run install` to install all the
 dependencies.
 4. After all the dependencies are properly installed, run: `npm run start:dev` to start the project.
-5. Then, navigate to [API docs](http://localhost:3000/docs) to see the available routes. 
+5. Then, navigate to [API docs](http://localhost:3000/docs) to see the available routes.
+6. For a test account, use the following credentials,
+  - Username: user 
+  - Password: pass
