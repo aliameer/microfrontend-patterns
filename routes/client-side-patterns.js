@@ -32,7 +32,7 @@ router.get('/code-level-integration', (req, res, next) => {
 router.get('/csi', (req, res, next) => {
   res.render('index-csi.twig', {
     title: 'Pattern - Client-Side Includes (CSI)',
-    microfrontendBaseUrl: 'http://localhost:3000',
+    microfrontendBaseUrl: process.env.MICROFRONTEND_BASE_URL,
   });
 });
 
@@ -65,6 +65,7 @@ router.get('/microfrontend-per-view', (req, res, next) => {
 router.get('/multiple-microfrontends-per-view', (req, res, next) => {
   res.render('index-client-side-multiple-microfrontends-per-view.twig', {
     title: 'Pattern - Client-Side Multiple Microfrontends per View',
+    microfrontendBaseUrl: process.env.MICROFRONTEND_BASE_URL,
   });
 });
 
@@ -81,7 +82,7 @@ router.get('/multiple-microfrontends-per-view', (req, res, next) => {
 router.get('/iframes', (req, res, next) => {
   res.render('index-iframes.twig', {
     title: 'Pattern - Client-Side Composition using Iframes',
-    microfrontendBaseUrl: 'http://localhost:3000',
+    microfrontendBaseUrl: process.env.MICROFRONTEND_BASE_URL,
   });
 });
 
