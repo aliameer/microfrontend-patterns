@@ -126,6 +126,14 @@ communication.
 ### Hybrid Patterns
 #### 9. Hybrid Composition of Fragments
 - Implemented using the [OpenComponents](https://opencomponents.github.io/) framework.
+- Each microfrontend is implemented as a "Component" and is served by the OpenComponents
+[registry](https://github.com/opencomponents/oc/wiki#editing-debugging-testing).
+- Each microfrontend is embedded in the base HTML file as the
+`<oc-component href="..."></oc-component>` HTML element.
+- The base HTML file also contains a reference to OpenComponent's JS browser client that parses the
+`oc-component` elements and fetches them from the registry.
+- The user and carts microfrontends are rendered on the client-side, whereas the `catalogue`
+microfrontend is rendered on the server-side.
 
 ## Running this project
 1. At the root of this project, open a terminal and run: `docker-compose up` to spin up the API
@@ -138,4 +146,4 @@ dependencies.
 5. Then, navigate to [API docs](http://localhost:3000/docs) to see the available routes.
 6. For a test account, use the following credentials,
   - Username: user 
-  - Password: pass
+  - Password: password

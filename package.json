@@ -13,6 +13,7 @@
     "formatter:fix": "prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -20,6 +21,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "nodesi": "^1.13.0",
+    "oc-client": "^3.2.11",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
     "twig": "~0.10.3"
