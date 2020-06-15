@@ -10,20 +10,16 @@
   });
 
   $(document).ready(() => {
-    $.getJSON('http://localhost:8080/catalogue', function (data) {
+    $.getJSON('{{ apiBaseUrl }}/catalogue', function (data) {
       if (data != null) {
         $.each(data, function (index, element) {
           $('#catalogue-products').append(`
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#">
-                  <img class="card-img-top" src="http://localhost:8080${element.imageUrl[0]}" />
-                </a>
+                <img class="card-img-top" src="{{ apiBaseUrl }}${element.imageUrl[0]}" />
                 <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">${element.name}</a>
-                  </h4>
-                  <h5>${element.price}</h5>
+                  <h4 class="card-title">${element.name}</h4>
+                  <h5>&dollar;${element.price}</h5>
                   <p class="card-text">${element.description}</p>
                 </div>
                 <div class="card-footer text-right">
@@ -38,7 +34,6 @@
         });
 
         const height = window.document.body.scrollHeight;
-        console.log('setting height: ', height);
 
         const iframeDimensions = {
           width: '100%',

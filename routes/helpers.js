@@ -13,7 +13,9 @@ router.get(
 
 router.get('/iframe/:microfrontend(user|carts|catalogue)', (req, res, next) => {
   const microfrontend = req.params.microfrontend;
-  res.render(`microfrontends/${microfrontend}/${microfrontend}-iframe.twig`);
+  res.render(`microfrontends/${microfrontend}/${microfrontend}-iframe.twig`, {
+    apiBaseUrl: process.env.API_BASE_URL,
+  });
 });
 
 module.exports = router;
