@@ -74,6 +74,7 @@ router.get('/multiple-microfrontends-per-view', (req, res, next) => {
  * path:
  *  /client-side/iframes:
  *    get:
+ *      summary: Partial implementation only.
  *      tags: [Client-Side]
  *      responses:
  *        "200":

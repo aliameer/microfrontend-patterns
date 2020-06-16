@@ -118,8 +118,16 @@ dependencies such as (jQuery, js-cookies, and Twitter Bootstrap etc.).
 - The microfrontends communicate with each other using
 [CustomEvents](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent).
 
-#### 8. Client-Side Composition using Iframes
-- Implemented using the browser native iframes and the
+#### 8. Client-Side Composition using Iframes (partial implementation only)
+- Unfortunately, the current use-case cannot be fully implemented using the iframes pattern.  
+- The use-case requires certain microfrontends (user, carts) to show UI elements such as dropdowns
+and modals. If the microfrontends are implemented as iframes, they are unable to show these elements
+outside of the space designated to their iframes. For example, the `user` microfrontend is
+designated a small (49px by 30px) slot in the navigation bar of the page.
+As the icon representing the `user` microfrontend is clicked, it must show a dropdown with certain
+options such as "login", "register" and clicking on these options needs to show modals that overlay
+everything.
+- *Partially* implemented using the browser native iframes and the
 [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) API for
 communication.
 
