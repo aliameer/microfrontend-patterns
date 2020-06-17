@@ -374,7 +374,7 @@
     });
 
     $('#carts').on('carts:add-product-to-cart', (event, product) => {
-      carts_addToCart(product.id);
+      carts_addToCart(product);
     });
 
     $('#carts').on('carts:reset-cart', () => {
@@ -390,17 +390,7 @@
           if (itm != null && itm.itemId != null) {
             $.getJSON(`{{ apiBaseUrl }}/catalogue/${itm.itemId}`, (product) => {
               numItemsInCart += itm.quantity;
-
-              $('#carts-items').append(`
-                <li class="list-group-item c-item">
-                  <div class="media">
-                    <img class="mr-3" src="{{ apiBaseUrl }}${product.imageUrl[0]}" width="60" />
-                    <div class="media-body">
-                      <h5 class="mt-0">${product.name} - &dollar;${product.price}</h5>
-                    </div>
-                  </div>
-                </li>
-              `);
+              carts_addItemToCartUi(product);
             }).always(() => {
               $('#carts-items-count').text(numItemsInCart);
 
@@ -414,15 +404,38 @@
     });
   }
 
-  function carts_addToCart(id) {
+  function carts_addItemToCartUi(product) {
+    $('#carts-items').append(`
+      <li class="list-group-item c-item">
+        <div class="media">
+          <img class="mr-3" src="{{ apiBaseUrl }}${product.imageUrl[0]}" width="60" />
+          <div class="media-body">
+            <h5 class="mt-0">${product.name} - &dollar;${product.price}</h5>
+          </div>
+        </div>
+      </li>
+    `);
+  }
+
+  function carts_updateCountUi() {
+    const countElement = $('#carts-items-count');
+    let currentCount = parseInt(countElement.text().trim()) || 0;
+
+    if (currentCount === 0) {
+      $('#carts-empty-cart').hide();
+    }
+
+    countElement.text(++currentCount);
+  }
+
+  function carts_addToCart(product) {
     $.ajax({
       url: '{{ apiBaseUrl }}/cart',
       type: 'POST',
-      data: JSON.stringify({ id: id }),
+      data: JSON.stringify({ id: product.id }),
       success: function () {
-        const countElement = $('#carts-items-count');
-        const currentCount = parseInt(countElement.text().trim()) || 0;
-        countElement.text(currentCount + 1);
+        carts_updateCountUi();
+        carts_addItemToCartUi(product);
       },
     });
   }
@@ -439,39 +452,48 @@
   $(document).ready(() => {
     $.getJSON('{{ apiBaseUrl }}/catalogue', function (data) {
       if (data != null) {
-        $.each(data, function (index, element) {
-          $('#catalogue-products').append(
-            `<div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <img class="card-img-top" src="{{ apiBaseUrl }}${element.imageUrl[0]}" />
-                <div class="card-body">
-                  <h4 class="card-title">
-                    ${element.name}
-                  </h4>
-                  <h5>&dollar;${element.price}</h5>
-                  <p class="card-text">${element.description}</p>
-                </div>
-                <div class="card-footer text-right">
-                  <button type="button" class="btn btn-primary"
-                    onclick="return catalogue_addToCart('${element.id}', '${element.name}', '${element.price}')">
-                        Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
-            `
-          );
+        $.each(data, function (index, product) {
+          catalogue_showProductUi(product);
         });
       }
     });
   });
 
-  function catalogue_addToCart(productId, productName, productPrice) {
+  function catalogue_showProductUi(product) {
+    $('#catalogue-products').append(
+      `<div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="{{ apiBaseUrl }}${product.imageUrl[0]}" />
+          <div class="card-body">
+            <h4 class="card-title">${product.name}</h4>
+            <h5>&dollar;${product.price}</h5>
+            <p class="card-text">${product.description}</p>
+          </div>
+          <div class="card-footer text-right">
+            <button type="button" class="btn btn-primary"
+              onclick="return catalogue_addToCart(
+                '${product.id}',
+                '${product.name}',
+                '${product.price}',
+                '${product.imageUrl}'
+                )"
+                >
+                  Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+      `
+    );
+  }
+
+  function catalogue_addToCart(productId, productName, productPrice, imageUrl) {
     $('#carts').trigger('carts:add-product-to-cart', [
       {
         id: productId,
         name: productName,
         price: productPrice,
+        imageUrl: imageUrl.split(',')
       },
     ]);
   }
