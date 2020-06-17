@@ -6,6 +6,6 @@ export const data = (context, callback) => {
 
   callback(null, {
     name,
-    staticPath
+    staticPath,
   });
 };

@@ -21,6 +21,11 @@ and catalogue. Additionally, it also contains an Edge Router as well as a
 [Backend-for-Frontend (BFF)](https://samnewman.io/patterns/architectural/bff/). Finally, the
 services as well as the persistence are polyglot.
 
+Please note that the default [Edge Router](https://github.com/microservices-demo/edge-router)
+(Traefik-based) in the Sock Shop project was replaced with an [nginx](https://www.nginx.com/)
+proxy instead; the Traefik proxy was crashing if any custom HTTP headers were set.
+Therefore, it was replaced with an nginx proxy.
+
 For the purpose of this thesis, only the `user`, `carts`, and `catalogue` microservices are used in
 order to scope down the project to make it more manageable within the timeframe. A typical user
 journey for this scoped-down application requires a user,

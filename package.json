@@ -6,11 +6,11 @@
     "setup:baseline-monolithic-application:spa-reactjs": "cd frontend/monolith-spa-react && npm install && npm run build",
     "setup:client-side:code-level-integration": "cd frontend/code-level-integration && npm install && npm run build",
     "setup:client-side:multiple-microfrontends-per-view": "cd frontend/client-side-multiple-microfrontends-per-view/microfrontends && npm run build",
-    "setup:hybrid:fragment-composition": "oc dev helpers/hybrid-components-registry 3030",
+    "setup:hybrid:fragment-composition": "oc dev frontend/hybrid-components-registry 3030",
     "start:dev": "DEBUG=express:*,microfrontend-patterns:* node ./bin/www",
     "start": "npm-run-all setup:*:* & npm run start:dev",
-    "formatter:check": "prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'",
-    "formatter:fix": "prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'helpers/**/*.hbs'"
+    "formatter:check": "prettier --check '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'frontend/**/*.hbs'",
+    "formatter:fix": "prettier --write '*.js' 'bin/www' '{frontend,routes}/**/*.js' 'views/**/*.twig' 'frontend/**/*.hbs'"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
