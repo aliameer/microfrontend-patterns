@@ -320,7 +320,6 @@
       success: () => {
         user_initializeNavbar();
         $('#user-login-modal-close').click();
-        $('#carts').trigger('carts:initialize-cart');
       },
       error: () => {
         $('#user-login-failure-message').removeClass('d-none');
@@ -441,7 +440,7 @@
   }
 
   function carts_resetCart() {
-    $('#carts-items .c-item').hide();
+    $('#carts-items .c-item').remove();
     $('#carts-items-count').text('0');
     $('#carts-empty-cart').show();
   }
