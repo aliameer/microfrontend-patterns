@@ -2,7 +2,8 @@ version: '3'
 
 services:
   edge-router:
-    image: weaveworksdemos/edge-router
+    build:
+      context: ./helpers/edge-router
     ports:
       - '8080:80'
     hostname: edge-router
@@ -11,8 +12,7 @@ services:
     depends_on:
       - front-end
   front-end:
-    build:
-      context: ./helpers/front-end
+    image: weaveworksdemos/front-end
     hostname: front-end
     environment:
       - reschedule:on-node-failure
@@ -38,43 +38,43 @@ services:
     hostname: carts-db
     environment:
       - reschedule:on-node-failure
-#  orders:
-#    image: weaveworksdemos/orders
-#    hostname: orders
-#    environment:
-#      - reschedule:on-node-failure
-#  orders-db:
-#    image: mongo
-#    hostname: orders-db
-#    environment:
-#      - reschedule:on-node-failure
-#  shipping:
-#    image: weaveworksdemos/shipping
-#    hostname: shipping
-#    environment:
-#      - reschedule:on-node-failure
-#  queue-master:
-#    image: weaveworksdemos/queue-master
-#    hostname: queue-master
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#    environment:
-#      - reschedule:on-node-failure
-#  rabbitmq:
-#    image: rabbitmq:3
-#    hostname: rabbitmq
-#    environment:
-#      - reschedule:on-node-failure
-#  payment:
-#    image: weaveworksdemos/payment
-#    hostname: payment
-#    environment:
-#      - reschedule:on-node-failure
-#    entrypoint:
-#      - /app
-#    command:
-#      - -port=80
-#      - -decline=999
+  #  orders:
+  #    image: weaveworksdemos/orders
+  #    hostname: orders
+  #    environment:
+  #      - reschedule:on-node-failure
+  #  orders-db:
+  #    image: mongo
+  #    hostname: orders-db
+  #    environment:
+  #      - reschedule:on-node-failure
+  #  shipping:
+  #    image: weaveworksdemos/shipping
+  #    hostname: shipping
+  #    environment:
+  #      - reschedule:on-node-failure
+  #  queue-master:
+  #    image: weaveworksdemos/queue-master
+  #    hostname: queue-master
+  #    volumes:
+  #      - /var/run/docker.sock:/var/run/docker.sock
+  #    environment:
+  #      - reschedule:on-node-failure
+  #  rabbitmq:
+  #    image: rabbitmq:3
+  #    hostname: rabbitmq
+  #    environment:
+  #      - reschedule:on-node-failure
+  #  payment:
+  #    image: weaveworksdemos/payment
+  #    hostname: payment
+  #    environment:
+  #      - reschedule:on-node-failure
+  #    entrypoint:
+  #      - /app
+  #    command:
+  #      - -port=80
+  #      - -decline=999
   user:
     image: weaveworksdemos/user
     hostname: user
