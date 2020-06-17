@@ -49,6 +49,8 @@ generate a monolithic frontend application that uses as few (extra) frontend res
 
 - This project is implemented as an [ExpressJS](https://expressjs.com/) application.
 - Each microfrontend pattern is implemented as a route in the application.
+The routes can be seen at [http://localhost:3000/docs](http://localhost:3000/docs) after the local
+server is run.
 - The backend is provided by the [Sock Shop](https://github.com/microservices-demo/microservices-demo)
   project and it is run locally as a set of Docker containers.
 
@@ -60,16 +62,16 @@ generate a monolithic frontend application that uses as few (extra) frontend res
 
 - Implemented as a single flat HTML file.
 - Each domain (user, carts, catalogue) has a corresponding HTML element in the document with the
-  relevant ID. For example, the user domain it is: `<li class="nav-item dropdown" id="user">...</li>`.
+  relevant ID. For example, for the `user` domain it is: `<li class="nav-item dropdown" id="user">...</li>`.
 - Each domain assumes the presence of jQuery, js-cookies, and Twitter Bootstrap (CSS and JS).
 - Each domain uses namespaces for HTML, and JS to avoid collisions. For example, all JS functions
   for the `user` domain are prefixed with `user_` and those for the `catalogue` domain are prefixed
   with `catalogue_`.
 - Communication between domains is performed using jQuery custom events. The names of the custom
-  events to follow pre-agreed conventions; the events are triggered on the HTML element designated
+  events follow pre-agreed conventions; the events are triggered on the HTML element designated
   with the ID of the relevant domain. For example, the `user` domain can trigger an "initialize cart"
   event on the `carts` domain by calling: `$('carts').trigger('carts:initialize-cart')`.
-  The carts domain then needs to perform the relevant actions in response.
+  The carts domain then needs to perform the relevant actions in response as it receives the event.
 
 #### 0b. Monolithic SPA.
 
@@ -129,7 +131,7 @@ generate a monolithic frontend application that uses as few (extra) frontend res
 - Each microfrontend was created using the
   [create-single-spa](https://single-spa.js.org/docs/create-single-spa/) utility.
 - The base HTML document contains designated HTML elements for each microfrontend; the Single SPA
-  framework takes care of bootstrapPing and mounting the relevant SPA to that HTML element.
+  framework takes care of bootstrapping and mounting the relevant SPA to that HTML element.
 - Single-SPA bundles each microfrontend using SystemJS and also prescribes using SystemJS for shared
   dependencies such as (jQuery, js-cookies, and Twitter Bootstrap etc.).
 - The microfrontends communicate with each other using
@@ -168,20 +170,24 @@ generate a monolithic frontend application that uses as few (extra) frontend res
 1. At the root of this project, open a terminal and run: `docker-compose up` to spin up the API
    provided by the [Sock Shop](https://github.com/microservices-demo/microservices-demo) project.
    Run `sudo docker-compose up` instead if you are running Linux. Please note that running this for
-   the first time will take longer as the base images for the docker containers need to be downloaded.
+   the first time will take longer as the base images for the docker containers need to be
+   downloaded. Therefore, you can proceed to the following steps while step 1 completes. 
 2. Ensure that you have a recent version of `node` and `npm` installed.
-3. At the root of this project, open another terminal and run: `npm run install` to install all the
+3. At the root of this project, open another terminal and run: `npm install` to install all the
    dependencies for the base project.
 4. After all the dependencies are properly installed, run: `npm run start` to start the project.
    Please note that this step will take long as it sets up the individual microfrontends for some of
    the patterns that require it. Please see the base [package.json](package.json) for patterns that
-   require `setup:` before they can be run and those that do not. - 4a. If you do not wish to run the patterns that require setup, simply run `npm run start:dev`. - 4b. If you wish to run an individual pattern that requires some setup, first run the
+   require `setup:` before they can be run and those that do not. The `npm run start` command
+   "completes" after a registry (for the hybrid pattern) runs on port 3030.
+   - 4a. If you do not wish to run the patterns that require setup, simply run `npm run start:dev`
+   without running `npm run start`.
+   - 4b. If you wish to run an individual pattern that requires some setup, first run the
    associated setup command in [package.json](package.json) and then run `npm run start:dev`.
-
    For example, to only run the "Client-Side Code Level Integration" pattern,
    first run `npm run setup:client-side:code-level-integration` and then run `npm run start:dev`.
 
-5. Then, navigate to [API docs](http://localhost:3000/docs) to see the available routes.
+5. Then, navigate to [http://localhost:3000/docs](http://localhost:3000/docs) to see the available routes.
 6. For a test account, use the following credentials,
    - Username: user
    - Password: password
