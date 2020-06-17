@@ -4,6 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "cd microfrontends/user && npm run build && cd ../carts && npm run build && cd ../catalogue && npm run build"
+    "build": "cd microfrontends/user && npm install && npm run build && cd ../carts && npm install && npm run build && cd ../catalogue && npm install && npm run build"
   }
 }
