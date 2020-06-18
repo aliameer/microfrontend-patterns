@@ -212,7 +212,7 @@
     if (userId) {
       user_getUsername(userId, (username) => {
         if (typeof username !== 'undefined') {
-          $('#carts').trigger('carts:initialize-cart');
+          $(document).ready(() => $('#carts').trigger('carts:initialize-cart'));
           user_prepareNavbarForAuthenticatedUser(username);
         } else {
           user_prepareNavbarForUnauthenticatedUser();

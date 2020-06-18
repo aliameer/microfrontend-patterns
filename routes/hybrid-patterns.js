@@ -21,6 +21,7 @@ const ocClient = new Client({
  *  /hybrid/fragment-composition:
  *    get:
  *      summary: Implemented using OpenComponents framework.
+ *      description: To try the pattern, click [here](http://localhost:3000/hybrid/fragment-composition).
  *      tags: [Hybrid]
  *      responses:
  *        "200":

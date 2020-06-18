@@ -10,6 +10,7 @@ const esi = new ESI({});
  *  /server-side/microfrontend-per-view:
  *    get:
  *      summary: Pattern not implemented.
+ *      description: To try the pattern, click [here](http://localhost:3000/server-side/microfrontend-per-view).
  *      tags: [Server-Side, Not-Implemented]
  *      responses:
  *        "200":
@@ -25,6 +26,7 @@ router.get('/microfrontend-per-view', (req, res, next) => {
  *  /server-side/ssi:
  *    get:
  *      summary: Server-Side Includes.
+ *      description: To try the pattern, click [here](http://localhost:3000/server-side/ssi).
  *      tags: [Server-Side]
  *      responses:
  *        "200":
@@ -43,6 +45,7 @@ router.get('/ssi', (req, res, next) => {
  *  /server-side/esi:
  *    get:
  *      summary: Edge-Side Includes.
+ *      description: To try the pattern, click [here](http://localhost:3000/server-side/esi).
  *      tags: [Server-Side]
  *      responses:
  *        "200":

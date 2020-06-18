@@ -38,7 +38,9 @@ app.get(['', '/'], (req, res, next) => res.redirect(302, docsUrl));
 app.use(
   docsUrl,
   swaggerUi.serve,
-  swaggerUi.setup(swaggerJsdoc(swaggerOptions))
+  swaggerUi.setup(swaggerJsdoc(swaggerOptions), {
+    customSiteTitle: 'Microfrontend Patterns',
+  })
 );
 
 // catch 404 and forward to error handler

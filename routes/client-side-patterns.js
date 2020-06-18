@@ -6,6 +6,7 @@ const router = express.Router();
  * path:
  *  /client-side/code-level-integration:
  *    get:
+ *      description: To try the pattern, click [here](http://localhost:3000/client-side/code-level-integration).
  *      tags: [Client-Side]
  *      responses:
  *        "200":
@@ -24,6 +25,7 @@ router.get('/code-level-integration', (req, res, next) => {
  *  /client-side/csi:
  *    get:
  *      summary: Client-Side Includes.
+ *      description: To try the pattern, click [here](http://localhost:3000/client-side/csi).
  *      tags: [Client-Side]
  *      responses:
  *        "200":
@@ -42,6 +44,7 @@ router.get('/csi', (req, res, next) => {
  *  /client-side/microfrontend-per-view:
  *    get:
  *      summary: Pattern not implemented.
+ *      description: To try the pattern, click [here](http://localhost:3000/client-side/microfrontend-per-view).
  *      tags: [Client-Side, Not-Implemented]
  *      responses:
  *        "200":
@@ -57,6 +60,7 @@ router.get('/microfrontend-per-view', (req, res, next) => {
  *  /client-side/multiple-microfrontends-per-view:
  *    get:
  *      summary: Implemented using Single-SPA framework.
+ *      description: To try the pattern, click [here](http://localhost:3000/client-side/multiple-microfrontends-per-view).
  *      tags: [Client-Side]
  *      responses:
  *        "200":
@@ -75,6 +79,7 @@ router.get('/multiple-microfrontends-per-view', (req, res, next) => {
  *  /client-side/iframes:
  *    get:
  *      summary: Partial implementation only.
+ *      description: To try the pattern, click [here](http://localhost:3000/client-side/iframes).
  *      tags: [Client-Side]
  *      responses:
  *        "200":

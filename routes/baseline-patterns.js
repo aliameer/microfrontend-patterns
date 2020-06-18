@@ -8,6 +8,7 @@ const router = express.Router();
  *  /monolith:
  *    get:
  *      summary: Baseline monolith application.
+ *      description: To try the pattern, click [here](http://localhost:3000/monolith).
  *      tags: [Monolith]
  *      responses:
  *        "200":
@@ -26,6 +27,7 @@ router.get('', (req, res, next) => {
  *  /monolith/spa-reactjs:
  *    get:
  *      summary: Baseline monolith application implemented using ReactJS.
+ *      description: To try the pattern, click [here](http://localhost:3000/monolith/spa-reactjs).
  *      tags: [Monolith]
  *      responses:
  *        "200":
