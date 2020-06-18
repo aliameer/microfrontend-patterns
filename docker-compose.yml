@@ -2,7 +2,8 @@ version: '3'
 
 services:
   edge-router:
-    image: weaveworksdemos/edge-router
+    build:
+      context: ./helpers/edge-router
     ports:
       - '8080:80'
     hostname: edge-router
@@ -11,8 +12,7 @@ services:
     depends_on:
       - front-end
   front-end:
-    build:
-      context: ./helpers/front-end
+    image: weaveworksdemos/front-end:master-5e21067c
     hostname: front-end
     environment:
       - reschedule:on-node-failure
