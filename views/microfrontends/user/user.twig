@@ -176,7 +176,7 @@
           return callback(undefined);
         }
       },
-      error: function (jqXHR, textStatus, errorThrown) {
+      error: (jqXHR, textStatus, errorThrown) => {
         console.error(
           `Could not get user information: ${id}, due to: ${textStatus} | ${errorThrown}`
         );
@@ -210,7 +210,7 @@
     const userId = Cookies.get('logged_in');
 
     if (userId) {
-      user_getUsername(userId, function (username) {
+      user_getUsername(userId, (username) => {
         if (typeof username !== 'undefined') {
           $('#carts').trigger('carts:initialize-cart');
           user_prepareNavbarForAuthenticatedUser(username);
@@ -236,7 +236,6 @@
       success: () => {
         user_initializeNavbar();
         $('#user-login-modal-close').click();
-        $('#carts').trigger('carts:initialize-cart');
       },
       error: () => {
         $('#user-login-failure-message').removeClass('d-none');

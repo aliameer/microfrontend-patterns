@@ -1,68 +1,187 @@
 $('#user').append(`
-  <button class="btn btn-link nav-link dropdown-toggle" type="button" data-toggle="dropdown">
-    <svg id="user-i-signin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-      <path d="M3 16 L23 16 M15 8 L23 16 15 24 M21 4 L29 4 29 28 21 28" />
+  <button
+    class="btn btn-link nav-link dropdown-toggle"
+    type="button"
+    data-toggle="dropdown"
+  >
+    <svg
+      id="user-i-signin"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      width="32"
+      height="32"
+      fill="none"
+      stroke="currentcolor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+    >
+      <path
+        d="M3 16 L23 16 M15 8 L23 16 15 24 M21 4 L29 4 29 28 21 28"
+      />
     </svg>
-  
-    <svg id="user-i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-      <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+
+    <svg
+      id="user-i-user"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      width="32"
+      height="32"
+      fill="none"
+      stroke="currentcolor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    >
+      <path
+        d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z"
+      />
     </svg>
   </button>
-    
+
   <div class="dropdown-menu dropdown-menu-right">
-    <span id="user-login" class="dropdown-item" data-toggle="modal" data-target="#user-login-modal">Login</span>
-    <span id="user-register" class="dropdown-item" data-toggle="modal" data-target="#user-register-modal">Register</span>
+    <span
+      id="user-login"
+      class="dropdown-item"
+      data-toggle="modal"
+      data-target="#user-login-modal"
+      >Login</span
+    >
+    <span
+      id="user-register"
+      class="dropdown-item"
+      data-toggle="modal"
+      data-target="#user-register-modal"
+      >Register</span
+    >
     <span id="user-howdy" class="dropdown-item-text"></span>
-    <div  id="user-logout-divider" class="dropdown-divider"></div>
-    <span id="user-logout" class="dropdown-item" onclick="return user_logout(event)">Logout</span>
+    <div id="user-logout-divider" class="dropdown-divider"></div>
+    <span
+      id="user-logout"
+      class="dropdown-item"
+      onclick="return user_logout(event)"
+      >Logout</span
+    >
   </div>
-    
-  <div class="modal fade" id="user-login-modal" tabIndex="-1" role="dialog">
+
+  <div
+    class="modal fade"
+    id="user-login-modal"
+    tabindex="-1"
+    role="dialog"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <form id="user-login-form" onsubmit="return user_login(event)">
-            <div id="user-login-failure-message" class="d-none"><div class="alert alert-danger">Invalid login credentials.</div></div>
+          <form
+            id="user-login-form"
+            onsubmit="return user_login(event)"
+          >
+            <div id="user-login-failure-message" class="d-none">
+              <div class="alert alert-danger">
+                Invalid login credentials.
+              </div>
+            </div>
 
             <div class="form-group">
               <label>Username</label>
-              <input type="text" value="user" class="form-control" name="username" id="user-login-modal-username" />
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                value="user"
+                id="user-login-modal-username"
+              />
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" value="password" class="form-control" name="password" id="user-login-modal-password" />
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                value="password"
+                id="user-login-modal-password"
+              />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="user-login-modal-close">Close</button>
-          <button type="submit" form="user-login-form" class="btn btn-primary">Login</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            id="user-login-modal-close"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            form="user-login-form"
+            class="btn btn-primary"
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>
   </div>
-    
-  <div class="modal fade" id="user-register-modal" tabIndex="-1" role="dialog">
+
+  <div
+    class="modal fade"
+    id="user-register-modal"
+    tabindex="-1"
+    role="dialog"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <form id="user-register-form" onsubmit="return user_register(event)">
-            <div id="user-register-failure-message" class="d-none"><div class="alert alert-danger">Registration failed, try again.</div></div>
+          <form
+            id="user-register-form"
+            onsubmit="return user_register(event)"
+          >
+            <div id="user-register-failure-message" class="d-none">
+              <div class="alert alert-danger">
+                Registration failed, try again.
+              </div>
+            </div>
 
             <div class="form-group">
               <label>Username</label>
-              <input type="text" class="form-control" name="username" id="user-register-modal-username" />
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                id="user-register-modal-username"
+              />
             </div>
 
             <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" name="password" id="user-register-modal-password" />
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="user-register-modal-password"
+              />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="user-register-modal-close">Close</button>
-          <button type="submit" form="user-register-form" class="btn btn-primary">Register</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            id="user-register-modal-close"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            form="user-register-form"
+            class="btn btn-primary"
+          >
+            Register
+          </button>
         </div>
       </div>
     </div>
@@ -84,7 +203,7 @@ function user_getUsername(id, callback) {
         return callback(undefined);
       }
     },
-    error: function (jqXHR, textStatus, errorThrown) {
+    error: (jqXHR, textStatus, errorThrown) => {
       console.error(
         `Could not get user information: ${id}, due to: ${textStatus} | ${errorThrown}`
       );
@@ -118,10 +237,10 @@ function user_initializeNavbar() {
   const userId = Cookies.get('logged_in');
 
   if (userId) {
-    user_getUsername(userId, function (username) {
+    user_getUsername(userId, (username) => {
       if (typeof username !== 'undefined') {
-        user_prepareNavbarForAuthenticatedUser(username);
         $('#carts').trigger('carts:initialize-cart');
+        user_prepareNavbarForAuthenticatedUser(username);
       } else {
         user_prepareNavbarForUnauthenticatedUser();
       }
@@ -144,7 +263,6 @@ function user_login(event) {
     success: () => {
       user_initializeNavbar();
       $('#user-login-modal-close').click();
-      $('#carts').trigger('carts:initialize-cart');
     },
     error: () => {
       $('#user-login-failure-message').removeClass('d-none');
