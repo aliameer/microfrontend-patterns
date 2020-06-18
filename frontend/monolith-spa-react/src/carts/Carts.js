@@ -12,7 +12,7 @@ class Carts extends React.Component {
     getCart().then((response) => {
       response.data.forEach((prod) => {
         getProduct(prod.itemId).then((response) => {
-          this.props.addProductToCart(response.data);
+          this.props.addProductToCart(response.data, prod.quantity);
         });
       });
     });
@@ -36,7 +36,9 @@ class Carts extends React.Component {
           <CartsCartIcon />
 
           <span className="badge badge-light" id="carts-items-count">
-            {this.props.products.length}
+            {this.props.products.reduce((total, prod) => {
+              return total + (prod.quantity || 0);
+            }, 0)}
           </span>
         </button>
 
@@ -63,7 +65,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addProductToCart: (product) => dispatch(addProductToCart(product)),
+    addProductToCart: (product, quantity) =>
+      dispatch(addProductToCart(product, quantity)),
   };
 };
 

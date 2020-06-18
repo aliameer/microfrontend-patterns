@@ -14,6 +14,9 @@ export default function (props) {
           <h5 className="mt-0">
             {props.product.name} - {String.fromCharCode(36)}
             {props.product.price}
+            <span className="badge badge-pill badge-primary float-right p-list-item-count">
+              {props.product.quantity || 1}
+            </span>
           </h5>
         </div>
       </div>

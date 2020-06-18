@@ -17,6 +17,18 @@ function rootReducer(state = initialState, action) {
     });
   }
   if (action.type === ADD_PRODUCT_TO_CART) {
+    const existingProduct = state.productsInCart.find(
+      (prod) => prod.id === action.data.id
+    );
+
+    if (existingProduct) {
+      existingProduct.quantity++;
+
+      return Object.assign({}, state, {
+        productsInCart: [...state.productsInCart],
+      });
+    }
+
     return Object.assign({}, state, {
       productsInCart: [...state.productsInCart, action.data],
     });

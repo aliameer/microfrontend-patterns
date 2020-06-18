@@ -17,6 +17,7 @@ class Product extends React.Component {
       this.props.addProductToCart({
         name: this.props.name,
         id: this.props.pid,
+        price: this.props.price,
         imageUrl: [this.props.imgPath],
       });
     });

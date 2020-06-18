@@ -4,6 +4,7 @@ export const login = () => ({ type: LOGIN });
 export const logout = () => ({ type: LOGOUT });
 export const resetCart = () => ({ type: RESET_CART });
 
-export const addProductToCart = (product) => {
-  return { type: ADD_PRODUCT_TO_CART, data: product };
+export const addProductToCart = (product, quantity) => {
+  quantity = quantity || 1;
+  return { type: ADD_PRODUCT_TO_CART, data: { ...product, quantity } };
 };
