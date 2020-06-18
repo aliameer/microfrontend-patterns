@@ -191,3 +191,6 @@ server is run.
 6. For a test account, use the following credentials,
    - Username: user
    - Password: password
+   
+Please note that this project serves as a proof of concept; therefore, the application is far from
+complete and contains bugs. Feel free to submit a pull request fixing a bug that you find. 

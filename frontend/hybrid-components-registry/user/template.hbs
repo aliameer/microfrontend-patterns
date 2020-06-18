@@ -67,16 +67,18 @@
       <div class="modal-body">
         <form id="user-login-form" onsubmit="return user_login(event)">
           <div id="user-login-failure-message" class="d-none">
-            <div class="alert alert-danger">Invalid login credentials.</div>
+            <div class="alert alert-danger">
+              Invalid login credentials.
+            </div>
           </div>
 
           <div class="form-group">
             <label>Username</label>
             <input
               type="text"
-              value="user"
               class="form-control"
               name="username"
+              value="user"
               id="user-login-modal-username"
             />
           </div>
@@ -84,9 +86,9 @@
             <label>Password</label>
             <input
               type="password"
-              value="password"
               class="form-control"
               name="password"
+              value="password"
               id="user-login-modal-password"
             />
           </div>
@@ -174,7 +176,7 @@
           return callback(undefined);
         }
       },
-      error: function (jqXHR, textStatus, errorThrown) {
+      error: (jqXHR, textStatus, errorThrown) => {
         console.error(
           `Could not get user information: ${id}, due to: ${textStatus} | ${errorThrown}`
         );
@@ -208,10 +210,10 @@
     const userId = Cookies.get('logged_in');
 
     if (userId) {
-      user_getUsername(userId, function (username) {
+      user_getUsername(userId, (username) => {
         if (typeof username !== 'undefined') {
-          user_prepareNavbarForAuthenticatedUser(username);
           $('#carts').trigger('carts:initialize-cart');
+          user_prepareNavbarForAuthenticatedUser(username);
         } else {
           user_prepareNavbarForUnauthenticatedUser();
         }
@@ -234,7 +236,6 @@
       success: () => {
         user_initializeNavbar();
         $('#user-login-modal-close').click();
-        $('#carts').trigger('carts:initialize-cart');
       },
       error: () => {
         $('#user-login-failure-message').removeClass('d-none');
