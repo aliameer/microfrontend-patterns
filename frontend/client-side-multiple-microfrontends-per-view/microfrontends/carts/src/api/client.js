@@ -14,4 +14,8 @@ const getProduct = (productId) => {
   return instance.get(`/catalogue/${productId}`);
 };
 
-export { getCart, getProduct };
+const pushProductToCart = (productId) => {
+  return instance.post('/cart', { id: productId });
+};
+
+export { getCart, getProduct, pushProductToCart };

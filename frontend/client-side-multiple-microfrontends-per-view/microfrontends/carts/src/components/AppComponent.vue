@@ -23,7 +23,7 @@
       </svg>
 
       <span class="badge badge-light" id="carts-items-count">
-        {{productItems.length || 0}}
+        {{ getTotalItemsCount() }}
       </span>
     </button>
 
@@ -42,7 +42,7 @@
 <script>
 
 import ProductListItemComponent from "./ProductListItemComponent";
-import { getCart, getProduct } from "../api/client";
+import { getCart, getProduct, pushProductToCart } from "../api/client";
 
 export default {
   name: 'AppComponent',
@@ -53,19 +53,36 @@ export default {
       type: Array
     }
   },
+  methods: {
+    getTotalItemsCount: function () {
+      return this.productItems.reduce((total, prod) => total + (prod.quantity || 0), 0)
+    }
+  },
   mounted() {
     const cartsMicrofrontend = document.getElementById('carts');
 
     cartsMicrofrontend.addEventListener('add-product-to-cart', (ev) => {
       const product = ev.detail;
-      this.productItems.push(product);
+
+      const existingProduct = this.productItems.find(
+        (prod) => prod.id === product.id
+      );
+
+      pushProductToCart(product.id).then(() => {
+        if (existingProduct) {
+          existingProduct.quantity++;
+          return;
+        }
+
+        this.productItems.push({...product, quantity: 1});
+      });
     });
 
     cartsMicrofrontend.addEventListener('initialize-cart', () => {
       getCart().then((response) => {
         response.data.forEach((prod) => {
           getProduct(prod.itemId).then((response) => {
-            this.productItems.push(response.data);
+            this.productItems.push({...response.data, quantity: prod.quantity});
           });
         });
       });

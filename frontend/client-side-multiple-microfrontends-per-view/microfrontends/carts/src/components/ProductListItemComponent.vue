@@ -9,6 +9,9 @@
       <div class="media-body">
         <h5 class="mt-0">
           {{product.name}} - &dollar;{{product.price}}
+          <span class="badge badge-pill badge-primary float-right p-list-item-count">
+            {{ product.quantity || 1 }}
+          </span>
         </h5>
       </div>
     </div>
