@@ -73,23 +73,23 @@
       System.import('bootstrap').then((bs) => {});
 
       System.import('single-spa').then(function (singleSpa) {
-        singleSpa.registerApplication(
-          'user',
-          () => System.import('@sock-shop/user'),
-          (location) => true
-        );
+        singleSpa.registerApplication({
+          name: 'user',
+          app: () => System.import('@sock-shop/user'),
+          activeWhen: (location) => true,
+        });
 
-        singleSpa.registerApplication(
-          'catalogue',
-          () => System.import('catalogue'),
-          (location) => true
-        );
+        singleSpa.registerApplication({
+          name: 'catalogue',
+          app: () => System.import('catalogue'),
+          activeWhen: (location) => true,
+        });
 
-        singleSpa.registerApplication(
-          'carts',
-          () => System.import('carts'),
-          (location) => true
-        );
+        singleSpa.registerApplication({
+          name: 'carts',
+          app: () => System.import('carts'),
+          activeWhen: (location) => true,
+        });
 
         singleSpa.start();
       });
