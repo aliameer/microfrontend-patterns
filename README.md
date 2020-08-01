@@ -6,7 +6,7 @@ a [sample microservices application](#sample-microservices-application) using nu
 patterns identified during the thesis.
 
 The thesis, including the details of the patterns can be seen at the following url:
-[link-to-thesis-here](https://www.google.com).
+[view thesis](/academic/paper/final-version-masters-thesis-microfrontends-ali-ameer-2516247.pdf).
 
 ## Sample microservices application
 
@@ -51,8 +51,18 @@ generate a monolithic frontend application that uses as few (extra) frontend res
 - Each microfrontend pattern is implemented as a route in the application.
 The routes can be seen at [http://localhost:3000/docs](http://localhost:3000/docs) after the local
 server is run.
-- The backend is provided by the [Sock Shop](https://github.com/microservices-demo/microservices-demo)
+- The backend API is provided by the [Sock Shop](https://github.com/microservices-demo/microservices-demo)
   project and it is run locally as a set of Docker containers.
+- All the frontend implementations access the same backend API available at,
+
+| Path                    | Action                                                                                             |
+|-------------------------|----------------------------------------------------------------------------------------------------|
+| /register               | Create new user                                                                                    |
+| /login                  | Login user                                                                                         |
+| /customers/{customerId} | Get customer details                                                                               |
+| /cart                   | * Get cart with all the items in it.<br>* Add new item to the cart associated  with the current user. |
+| /catalogue              | Get a list of items.                                                                               |
+| /catalogue/{itemId}     | Get details of a specific item                                                                     |
 
 ## List of patterns
 
